@@ -1,38 +1,41 @@
 <template>
 <aside class="sidebar">
-    <ul>
-        <li class="logo"></li>
-        <li class="sidebar__item" >
-            <router-link to="">
-                <img src="../assets/icon3.svg" alt="" />
-                <img class="img" src="../assets/date.svg" alt="" />
-            </router-link>
-        </li>
-        <li class="sidebar__item">
-            <router-link to="/profile">
-                <img src="../assets/myprofile.svg" alt="" />
-            </router-link>
-        </li>
-        <li class="sidebar__item">
-            <router-link to="">
-                <img src="../assets/handyman-tools.svg" alt="" />
-            </router-link>
-        </li>
-        <li class="sidebar__item">
-            <router-link to="">
-                <img src="../assets/team.svg" alt="" />
-            </router-link>
-        </li>
-        <li class="sidebar__item active">
-            <router-link to=""><img src="../assets/messages.svg" alt="" />
-            </router-link>
-        </li>
-    </ul>
+  <ul>
+    <li class="logo"></li>
+    <li class="sidebar__item" >
+      <router-link :to="returnItems.firstLink">
+        <img :src="returnItems.firstPath" alt="" />
+      </router-link>
+    </li>
+    <li class="sidebar__item">
+      <router-link :to="returnItems.secondLink">
+        <img :src="returnItems.secondPath" alt="" />
+      </router-link>
+    </li>
+    <li class="sidebar__item">
+      <router-link :to="returnItems.thirdLink">
+        <img :src="returnItems.thirdPath" alt="" />
+      </router-link>
+    </li>
+    <li class="sidebar__item">
+      <router-link :to="returnItems.fourthLink">
+        <img :src="returnItems.fourthPath" alt="" />
+      </router-link>
+    </li>
+    <li class="sidebar__item active">
+      <router-link :to="returnItems.fifthLink">
+        <img :src="returnItems.fifthPath" alt="" />
+      </router-link>
+    </li>
+  </ul>
 </aside>
 </template>
 <script>
 export default {
   name: 'Sidebar',
+  props: {
+    returnItems: {},
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -46,20 +49,28 @@ export default {
         padding: 35px 30px;
         position: relative;
         width: 20px;
+        & img{
+            width: 20px;
+            height: 20px;
+        }
+        & a{
+            width: 20px;
+            height: 20px;
+        }
         @include onPhone{
             padding: 35px 10px;
         }
+    }
+  
+    &__item:hover {
+      border-left: 4px solid #0ad69c;
     }
 
     @include onPhone {
         display: none;
     }
 }
-.img{
-    left: 19px;
-    position: absolute;
-    top: 27px;
-}
+
 .burger{
     display: none;
     &__line{
@@ -83,12 +94,8 @@ export default {
     z-index: 30;
 }
 
-.active{
-    border-left: 4px solid #0ad69c;
-}
-
 .logo {
-    background-image: url("../assets/logo.svg");
+    background-image: url("../../assets/personal/logo.svg");
     height: 35px;
     margin: 18px 22px 65px 23px;
     width: 35px;

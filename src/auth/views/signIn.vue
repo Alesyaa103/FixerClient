@@ -56,7 +56,7 @@ export default {
     },
   },
   mounted() {
-    this.$emit('returnItems', this.headerItems);
+    this.$emit('headerItems', this.headerItems);
   },
 };
 </script>

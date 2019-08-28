@@ -2,9 +2,9 @@
 <div class="container">
     <form class="send" action="###" method="POST">
         <legend class="send__name">Reset your password</legend>
-        <input type="password" placeholder="New password" v-model="password" />
+        <input type="password" placeholder="New password" v-model="password" :class="{errorInput: $v.password.$error}" @change="$v.password.$touch()"/>
         <ConfirmPassword :password="password"/>
-        <input type="password" placeholder="Confirm password" v-model="passwordConfirm" />
+        <input type="password" placeholder="Confirm password" v-model="passwordConfirm" :class="{errorInput: $v.passwordConfirm.$error}" @change="$v.passwordConfirm.$touch()"/>
         <div class="send__button">
           <button type="submit" @click.prevent="reset2">Reset</button>
           </div>
@@ -13,6 +13,7 @@
 </template>
 <script>
 import ConfirmPassword from '../components/ConfirmPassword.vue';
+import { required, sameAs} from 'vuelidate/lib/validators';
 
 export default {
   name: 'password3',
@@ -31,13 +32,25 @@ export default {
       passwordConfirm: '',
     };
   },
+  validations: {
+    password: {
+      required,
+    },
+    passwordConfirm: {
+      required,
+      sameAs: sameAs('password'),
+    },
+  },
   methods: {
     reset2() {
-      if (this.password === this.passwordConfirm) {
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      };
         this.onReset2(
           this.password,
         );
-      }
     },
   },
   mounted() {
@@ -101,7 +114,9 @@ export default {
         width: 94%;
       }
     }
-
+    .errorInput{
+      border-color: #FF6359;
+    }
     & button {
       background-color: $success;
       border-radius: 2px;

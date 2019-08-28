@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view :user="user" @returnUser="onReturnUser"></router-view>
   </div>
 </template>
 
@@ -9,7 +9,15 @@
 
 export default {
   name: 'app',
-  components: {
+  data() {
+    return{
+      user: {},
+    }
+  },
+  methods: {
+    onReturnUser(user) {
+      this.user = user;
+    }
   },
 };
 </script>

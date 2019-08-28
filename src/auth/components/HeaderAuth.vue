@@ -25,7 +25,7 @@ export default {
     position: relative;
     z-index: 1;
     &__logo{
-        background-image: url('../assets/logo.svg');
+        background-image: url('../../assets/auth/logo.svg');
         background-size: cover;
         height: 35.32px;
         margin-left: 141px;

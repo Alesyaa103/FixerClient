@@ -2,7 +2,7 @@
 <div class="container">
     <form class="send">
         <legend class="send__name">Enter your e-mail to reset your password</legend>
-        <input placeholder="E-mail" type="email" v-model="user.email"/>
+        <input placeholder="E-mail" type="email" v-model="user.email" :class="{errorInput: $v.user.email.$error}" @change="$v.user.email.$touch()"/>
         <div class="send__button">
             <button type="submit" @click.prevent="reset1">Sign in</button>
         </div>
@@ -10,6 +10,8 @@
 </div>
 </template>
 <script>
+import { required, email} from 'vuelidate/lib/validators';
+
 export default {
   name: 'password1',
   props: ['onReset1'],
@@ -23,8 +25,21 @@ export default {
       user: {},
     };
   },
+  validations: {
+    user: {
+      email: {
+        required,
+        email,
+      },
+    },
+  },
   methods: {
     reset1() {
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      };
       this.onReset1(
         this.user,
       );
@@ -88,7 +103,9 @@ export default {
             width: 94%;
         }
     }
-
+    .errorInput{
+      border-color: #FF6359;
+    }
     & button{
         background-color: $success;
         border-radius: 2px;

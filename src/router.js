@@ -8,11 +8,11 @@ import signUp3 from './auth/views/signUp3.vue';
 import password1 from './auth/views/password1.vue';
 import password2 from './auth/views/password2.vue';
 import password3 from './auth/views/password3.vue';
-import chat from './personal/views/chat/chat.vue';
-import search from './personal/views/search/search.vue';
-import profile from './personal/views/profile/profile.vue';
-import map from './personal/views/map/mapScreen.vue';
-import admin from './personal/views/admin/admin.vue';
+import chat from './personal/views/chat.vue';
+import search from './personal/views/search.vue';
+import profile from './personal/views/profile.vue';
+import map from './personal/views/mapScreen.vue';
+import admin from './personal/views/admin.vue';
 
 const routes = [
   {

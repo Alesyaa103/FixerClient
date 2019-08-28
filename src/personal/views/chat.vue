@@ -1,262 +1,259 @@
 <template>
 <section class="wraper">
     <ul class="chats">
-        <li class="chat"><img class="chat__avatar" src="./assets/person1.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person1.svg" alt="" />
             <div class="info"><span class="info__name">Miranda Hops<img class="img__online"
-                        src="./assets/online.svg" alt="" /><img class="img__mute" src="./assets/mute.svg"
+                        src="@/assets/personal/online.svg" alt="" /><img class="img__mute" src="@/assets/personal/mute.svg"
                         alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person2.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person2.svg" alt="" />
             <div class="info"><span class="info__name">Barry Callebaut<img class="img__online"
-                        src="./assets/online.svg" alt="" /></span>
+                        src="@/assets/personal/online.svg" alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person3.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person3.svg" alt="" />
             <div class="info"><span class="info__name">Stacey Dosh<img class="img__online"
-                        src="./assets/online.svg" alt="" /></span>
+                        src="@/assets/personal/online.svg" alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person5.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person5.svg" alt="" />
             <div class="info"><span class="info__name">Michael Kors</span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person6.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person6.svg" alt="" />
             <div class="info"><span class="info__name">Johny Cash<img class="img__online"
-                        src="./assets/online.svg" alt="" /></span>
+                        src="@/assets/personal/online.svg" alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person1.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person1.svg" alt="" />
             <div class="info"><span class="info__name">Miranda Hops</span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person2.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person2.svg" alt="" />
             <div class="info"><span class="info__name">Barry Callebaut<img class="img__online"
-                        src="./assets/online.svg" alt="" /><img class="img__mute" src="./assets/mute.svg"
+                        src="@/assets/personal/online.svg" alt="" /><img class="img__mute" src="@/assets/personal/mute.svg"
                         alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person3.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person3.svg" alt="" />
             <div class="info"><span class="info__name">Stacey Dosh<img class="img__online"
-                        src="./assets/online.svg" alt="" /></span>
+                        src="@/assets/personal/online.svg" alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person5.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person5.svg" alt="" />
             <div class="info"><span class="info__name">Michael Kors</span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person6.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person6.svg" alt="" />
             <div class="info"><span class="info__name">Johny Cash<img class="img__online"
-                        src="./assets/online.svg" alt="" /></span>
+                        src="@/assets/personal/online.svg" alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person5.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person5.svg" alt="" />
             <div class="info"><span class="info__name">Michael Kors</span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
-        <li class="chat"><img class="chat__avatar" src="./assets/person6.svg" alt="" />
+        <li class="chat"><img class="chat__avatar" src="@/assets/personal/person6.svg" alt="" />
             <div class="info"><span class="info__name">Johny Cash<img class="img__online"
-                        src="./assets/online.svg" alt="" /></span>
+                        src="@/assets/personal/online.svg" alt="" /></span>
                 <p class="info__msg">Excepteur sint occaecata Lorem, ipsum.</p>
             </div>
         </li>
     </ul>
     <div class="dialog">
-        <div class="search"><img class="search__button" src="./assets/search.svg" alt="" /><input
+        <div class="search"><img class="search__button" src="@/assets/personal/search.svg" alt="" /><input
                 class="search__input" type="text" placeholder="Search message..." /></div>
         <ul class="messages">
             <li class="today">Today, 17.03.2018</li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
+            <li class="message"><img class="message__avatar" src="@/assets/personal/av.svg" alt="" />
                 <div class="message__text">
                     <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__left" src="@/assets/personal/left.svg" alt="" />
                 </div>
             </li>
             <li class="message__my">
                 <div class="message__text">
                     <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
-                </div>
-            </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
-                <div class="message__text">
-                    <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
-                </div>
-            </li>
-            <li class="message__my">
-                <div class="message__text">
-                    <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
-                </div>
-            </li>
-            <li class="message"><img class="message__avatar" src="./assets/av.svg" alt="" />
-                <div class="message__text">
-                    <p class="message__sended"> Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__left" src="./assets/left.svg" alt="" />
-                </div>
-            </li>
-            <li class="message__my">
-                <div class="message__text">
-                    <p class="message__sended">Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Minima, cum culpa?</p>
-                    <p class="message__time">9:31</p><img class="img__right" src="./assets/right.svg" alt="" />
+                    <p class="message__time">9:31</p><img class="img__right" src="@/assets/personal/right.svg" alt="" />
                 </div>
             </li>
         </ul>
         <div class="write"><input class="write__input" type="text" placeholder="Write a message..." />
-            <div class="write__images"><img src="./assets/smile.svg" alt="" /><img src="./assets/paperclip.svg"
-                    alt="" /><button class="send"><img src="./assets/img2.svg" alt="" /><img class="img__elem"
-                        src="./assets/img1.svg" alt="" /></button></div>
+            <div class="write__images"><img src="@/assets/personal/smile.svg" alt="" /><img src="@/assets/personal/paperclip.svg"
+                    alt="" /><button class="send"><img src="@/assets/personal/img2.svg" alt="" /><img class="img__elem"
+                        src="@/assets/personal/img1.svg" alt="" /></button></div>
         </div>
     </div>
 </section>
 </template>
 <script>
+import firstPath from '../../assets/personal/searchActiv.svg';
+import secondPath from '../../assets/personal/myprofile.svg';
+import thirdPath from '../../assets/personal/handyman.svg';
+import fourthPath from '../../assets/personal/team.svg';
+import fifthPath from '../../assets/personal/messageActive.svg';
+
 export default {
   name: 'chat',
+  data() {
+    return {
+      returnItems: {
+        firstLink: 'search',
+        firstPath,
+        secondLink: 'profile',
+        secondPath,
+        thirdLink: '',
+        thirdPath,
+        fourthLink: 'admin',
+        fourthPath,
+        fifthLink: 'chat',
+        fifthPath,
+      },
+    };
+  },
+  mounted() {
+    this.$emit('returnItems', this.returnItems);
+  },
 };
 </script>
 <style lang="scss" scoped>

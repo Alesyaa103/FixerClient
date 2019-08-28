@@ -7,21 +7,24 @@
             <div class="burger__line"></div>
         </div> -->
         <a class="linetop__words" href="###">Home</a>
-        <img class="linetop__element" src="../assets/Vector.svg" alt="" />
+        <img class="linetop__element" src="@/assets/personal/Vector.svg" alt="" />
         <a class="linetop__words" href="###">Network</a>
     </div>
     <div class="profile">
         <a class="profile__link" href="###">
-            <img src="../assets/profile.svg" alt="" />
+            <img src="@/assets/personal/profile.svg" alt="" />
             <p class="linetop__words">Sarah Freeman</p>
         </a>
-        <img src="../assets/Shape.svg" alt="" />
+        <img src="@/assets/personal/Shape.svg" alt="" />
     </div>
 </header>
 </template>
 <script>
 export default {
   name: 'HeaderPro',
+  props: {
+    returnItems: {},
+  }
 };
 </script>
 <style lang="scss" scoped>

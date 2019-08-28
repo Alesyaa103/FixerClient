@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-        <Sidebar />
+        <Sidebar :returnItems="returnItems"/>
         <section class="container">
-            <HeaderPro />
-            <router-view></router-view>
+            <HeaderPro :returnItems="returnItems"/>
+            <router-view @returnItems="onReturnItems" :user="user"></router-view>
         </section>
     </div>
 </template>
@@ -13,9 +13,22 @@ import Sidebar from './components/Sidebar.vue';
 
 export default {
   name: 'app',
+  props: {
+    user: Object,
+  },
+  data() {
+    return {
+      returnItems: {},
+    };
+  },
   components: {
     HeaderPro,
     Sidebar,
+  },
+  methods: {
+    onReturnItems(data) {
+      this.returnItems = data;
+    },
   },
 };
 </script>

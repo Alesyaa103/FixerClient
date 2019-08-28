@@ -72,7 +72,7 @@
                 </select></span><span>service<select>
                     <option value="">3 services</option>
                 </select></span>
-                <span>period <input type="date" name="calendar" value="2019-08-20"  dateformat="d M y" max="2021-06-04" min="2019-08-01">
+                <span>period <input type="date" name="calendar" value="2019-08-20" max="2021-06-04" min="2019-08-01">
                 </span>
             <div class="search__button"></div>
             <button type="submit">search</button>
@@ -86,7 +86,7 @@
 </section>
 </template>
 <script>
-import myMap from './components/myMap.vue';
+import myMap from '../components/myMap.vue';
 
 export default {
   name: 'mapScreen',
@@ -94,20 +94,7 @@ export default {
     myMap,
   },
 };
-//   name: 'map',
-// //   props: ['name'],
-//   data: () => {
-//     return {
-//       msg: 'Welcome to App'
-//     }},
-//   mounted:()=> {
-//     this.map = new google.maps.Map(document.getElementById("map"), {
-//     center: {lat: 50.45466, lng: 30.5238},
-//     scrollwheel: false,
-//     zoom: 10
-//     })
-//   }
-// };
+
 </script>
 <style lang="scss" scoped>
 @import "@/styles/_mixins.scss";
@@ -176,7 +163,7 @@ form {
 }
 
 .location {
-    background: url("./assets/geo.svg") no-repeat transparent;
+    background: url("../../assets/personal/geo.svg") no-repeat transparent;
     background-position: 6% 50%;
 }
 

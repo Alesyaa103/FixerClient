@@ -90,12 +90,12 @@
             </div>
             <div class="workers">
                 <article class="worker">
-                    <img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                    <img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info">
                         <span class="info__name">Richard Thompson
-                            <img class="img__star" src="./assets/gold.svg" /></span>
+                            <img class="img__star" src="@/assets/personal/gold.svg" /></span>
                         <div class="info__location">
-                            <img src="./assets/geo.svg" alt="" />
+                            <img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -109,12 +109,12 @@
                     </div>
                 </article>
                 <article class="worker">
-                    <img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                    <img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info">
                         <span class="info__name">Richard Thompson
-                            <img class="img__star" src="./assets/silver.svg" /></span>
+                            <img class="img__star" src="@/assets/personal/silver.svg" /></span>
                         <div class="info__location">
-                            <img src="./assets/geo.svg" alt="" />
+                            <img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -128,10 +128,10 @@
                     </div>
                 </article>
                 <article class="worker">
-                    <img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                    <img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info"><span class="info__name">Richard Thompson
-                        <img class="img__star" src="./assets/gold.svg" /></span>
-                        <div class="info__location"><img src="./assets/geo.svg" alt="" />
+                        <img class="img__star" src="@/assets/personal/gold.svg" /></span>
+                        <div class="info__location"><img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -145,12 +145,12 @@
                     </div>
                 </article>
                 <article class="worker">
-                    <img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                    <img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info">
                         <span class="info__name">Richard Thompson
-                            <img class="img__star" src="./assets/gold.svg" /></span>
+                            <img class="img__star" src="@/assets/personal/gold.svg" /></span>
                         <div class="info__location">
-                            <img src="./assets/geo.svg" alt="" />
+                            <img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -164,12 +164,12 @@
                     </div>
                 </article>
                 <article class="worker">
-                    <img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                    <img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info">
                         <span class="info__name">Richard Thompson
-                            <img class="img__star" src="./assets/gold.svg" /></span>
+                            <img class="img__star" src="@/assets/personal/gold.svg" /></span>
                         <div class="info__location">
-                            <img src="./assets/geo.svg" alt="" />
+                            <img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -182,11 +182,11 @@
                         </div>
                     </div>
                 </article>
-                <article class="worker"><img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                <article class="worker"><img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info"><span class="info__name">Richard Thompson
-                        <img class="img__star" src="./assets/gold.svg" /></span>
+                        <img class="img__star" src="@/assets/personal/gold.svg" /></span>
                         <div class="info__location">
-                            <img src="./assets/geo.svg" alt="" />
+                            <img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -200,12 +200,12 @@
                     </div>
                 </article>
                 <article class="worker">
-                    <img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                    <img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info">
                         <span class="info__name">Richard Thompson
-                        <img class="img__star" src="./assets/gold.svg" /></span>
+                        <img class="img__star" src="@/assets/personal/gold.svg" /></span>
                         <div class="info__location">
-                            <img src="./assets/geo.svg" alt="" />
+                            <img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -219,12 +219,12 @@
                     </div>
                 </article>
                 <article class="worker">
-                    <img class="worker__avatar" src="./assets/person1.svg" alt="" />
+                    <img class="worker__avatar" src="@/assets/personal/person1.svg" alt="" />
                     <div class="info">
                         <span class="info__name">Richard Thompson
-                            <img class="img__star" src="./assets/gold.svg" /></span>
+                            <img class="img__star" src="@/assets/personal/gold.svg" /></span>
                         <div class="info__location">
-                            <img src="./assets/geo.svg" alt="" />
+                            <img src="@/assets/personal/geo.svg" alt="" />
                             <p>Vancouver, Canada</p>
                         </div>
                         <div class="info__stack">
@@ -243,8 +243,30 @@
 </section>
 </template>
 <script>
+import firstPath from '../../assets/personal/searchActiv.svg';
+import secondPath from '../../assets/personal/myprofile.svg';
+import thirdPath from '../../assets/personal/messages.svg';
+import fourthPath from '../../assets/personal/calendar.svg';
+
 export default {
   name: 'search',
+  data() {
+    return {
+      returnItems: {
+        firstLink: 'search',
+        firstPath,
+        secondLink: 'profile',
+        secondPath,
+        thirdLink: 'chat',
+        thirdPath,
+        fourthLink: '',
+        fourthPath,
+      },
+    };
+  },
+  mounted() {
+    this.$emit('returnItems', this.returnItems);
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -315,7 +337,7 @@ form {
 }
 
 .location {
-    background: url("./assets/geo.svg") no-repeat transparent;
+    background: url("../../assets/personal/geo.svg") no-repeat transparent;
     background-position: 6% 50%;
 }
 

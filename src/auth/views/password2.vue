@@ -1,6 +1,6 @@
 <template>
 <div class="envelop">
-    <img src="../assets/email.svg" alt="" />
+    <img src="@/assets/auth/email.svg" alt="" />
     <h1>You are almost ready to go!</h1>
     <h2>Please check your email to reset your password</h2>
 </div>
@@ -28,7 +28,7 @@ export default {
 @import "@/styles/_mixins.scss";
 .envelop{
     align-items: center;
-    background-image: url('../assets/bg.svg');
+    background-image: url('../../assets/auth/bg.svg');
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -37,6 +37,9 @@ export default {
     justify-content: center;
     margin: 0 auto;
     width: 1000px;
+    @include onMiddle{
+      background-size: cover;
+    }
     & img{
         height: 170px;
         margin-bottom: 20px;

@@ -1,6 +1,6 @@
 <template>
 <div class="envelop">
-    <img src="../assets/email.svg" alt="" />
+    <img src="@/assets/auth/email.svg" alt="" />
     <h1>You are almost ready to go!</h1>
     <h2>Please check your email to activate your account</h2>
 </div>
@@ -26,7 +26,7 @@ export default {
 @import "@/styles/_mixins.scss";
 .envelop{
     align-items: center;
-    background-image: url('../assets/bg.svg');
+    background-image: url('../../assets/auth/bg.svg');
     background-position: center;
     background-repeat: no-repeat;
     display: flex;

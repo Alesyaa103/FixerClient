@@ -5,9 +5,11 @@ import VueAxios from 'vue-axios';
 import Vuelidate from 'vuelidate'
 import App from './App.vue';
 import router from './router';
+import Vuex from 'vuex';
 
 Vue.use(VueRouter);
-Vue.use(Vuelidate)
+Vue.use(Vuelidate);
+Vue.use(Vuex);
 Vue.config.productionTip = false;
 const instance = axios.create({
   baseURL: 'http://localhost:7070/api/',

@@ -12,6 +12,7 @@ import HeaderAuth from './components/HeaderAuth.vue';
 
 export default {
   name: 'app',
+  props: ['onReturnUser'],
   data() {
     return {
       headerItems: {},
@@ -56,9 +57,10 @@ export default {
       this.$router.push('/auth/signUp2');
     },
     onSignIn(user) {
+      this.user = user;
       this.axios.post('signIn', user)
         .then((res) => {
-          this.saveToken(res);
+          this.saveToken(res);  
           this.$router.push('/personal/profile');
         },
         (err) => {
@@ -73,6 +75,14 @@ export default {
     onReturnItems(data) {
       this.headerItems = data;
     },
+    returnUser(){
+      this.onReturnUser(
+        this.user,
+      )
+    }
+  },
+  mounted() {
+    this.$emit('returnUser', this.returnUser);
   },
 };
 </script>

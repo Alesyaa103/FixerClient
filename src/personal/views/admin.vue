@@ -23,7 +23,7 @@
                 </select>
             </span>
             <span>rfrome@gmail.com</span>
-            <img src="./assets/cross.svg" alt="" />
+            <img src="@/assets/personal/cross.svg" alt="" />
         </li>
         <li>
             <span>Richard</span>
@@ -38,7 +38,7 @@
                 </select>
             </span>
             <span>rfrome@gmail.com</span>
-            <img src="./assets/cross.svg" alt="" />
+            <img src="@/assets/personal/cross.svg" alt="" />
         </li>
         <li>
             <span>Richard</span>
@@ -53,7 +53,7 @@
                 </select>
             </span>
             <span>rfrome@gmail.com</span>
-            <img src="./assets/cross.svg" alt="" />
+            <img src="@/assets/personal/cross.svg" alt="" />
         </li>
         <li>
             <span>Richard</span>
@@ -68,7 +68,7 @@
                 </select>
             </span>
             <span>rfrome@gmail.com</span>
-            <img src="./assets/cross.svg" alt="" />
+            <img src="@/assets/personal/cross.svg" alt="" />
         </li>
         <li>
             <span>Richard</span>
@@ -83,7 +83,7 @@
                 </select>
             </span>
             <span>rfrome@gmail.com</span>
-            <img src="./assets/cross.svg" alt="" />
+            <img src="@/assets/personal/cross.svg" alt="" />
         </li>
         <li>
             <span>Richard</span>
@@ -98,7 +98,7 @@
                 </select>
             </span>
             <span>rfrome@gmail.com</span>
-            <img src="./assets/cross.svg" alt="" />
+            <img src="@/assets/personal/cross.svg" alt="" />
         </li>
         <li>
             <span>Richard</span>
@@ -113,14 +113,27 @@
                 </select>
             </span>
             <span>rfrome@gmail.com</span>
-            <img src="./assets/cross.svg" alt="" />
+            <img src="@/assets/personal/cross.svg" alt="" />
         </li>
     </ul>
 </section>
 </template>
 <script>
+import firstPath from '../../assets/personal/team.svg';
+
 export default {
   name: 'admin',
+  data() {
+    return {
+      returnItems: {
+        firstLink: 'admin',
+        firstPath,
+      },
+    };
+  },
+  mounted() {
+    this.$emit('returnItems', this.returnItems);
+  },
 };
 </script>
 <style lang="scss" scoped>
