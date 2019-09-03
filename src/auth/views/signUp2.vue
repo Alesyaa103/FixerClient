@@ -23,9 +23,8 @@
 </div>
 </template>
 <script>
-import axios from 'axios';
+import { required, minLength, sameAs } from 'vuelidate/lib/validators';
 import ConfirmPassword from '../components/ConfirmPassword.vue';
-import {required, minLength, sameAs} from 'vuelidate/lib/validators';
 
 export default {
   name: 'signUp2',
@@ -62,12 +61,12 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      };
+      }
       if (this.checked1 && this.checked2) {
         this.onSignUp2(
-        this.password,
+          this.password,
         );
-      };
+      }
     },
   },
   mounted() {
@@ -98,11 +97,11 @@ export default {
 .send {
   margin: 70px auto;
   position: relative;
-  width: 400px;  
+  width: 400px;
   @include onPhone {
       margin: 45px auto;
       width: 90%;
-  }  
+  }
   & input {
     background-color: $input;
     border: 2px solid #f2f2f2;
@@ -112,10 +111,10 @@ export default {
     margin-bottom: 24px;
     outline: none;
     padding-left: 13px;
-    width: 383px;  
+    width: 383px;
     &:focus {
       box-shadow: -2px 0 0 0 $sky;
-    }  
+    }
     &::placeholder {
       color: rgba(135, 144, 167, 0.57);
       font-family: $roboto;
@@ -124,7 +123,7 @@ export default {
       font-weight: normal;
       letter-spacing: 0.28px;
       line-height: 16px;
-    }  
+    }
     @include onMiddle {
       width: 94%;
     }
@@ -145,22 +144,22 @@ export default {
     line-height: 19px;
     text-align: center;
     width: 188px;
-  }  
+  }
   &__same {
     display: flex;
     justify-content: space-between;
-    width: 400px;  
+    width: 400px;
     & input {
-      width: 173px;  
+      width: 173px;
       @include onPhone {
         margin-right: 2%;
         width: 45%;
       }
-    }  
-    @include onPhone {
-      width: 100%;  
     }
-  }  
+    @include onPhone {
+      width: 100%;
+    }
+  }
   &__name {
     color: $content;;
     font-family: $exo2;
@@ -169,7 +168,7 @@ export default {
     font-weight: 600;
     letter-spacing: 0.4px;
     line-height: 34px;
-    padding-bottom: 27px;  
+    padding-bottom: 27px;
     @include onPhone {
       font-size: 20px;
     }
@@ -183,7 +182,7 @@ export default {
     display: inline-block;
     height: 40px;
     ;
-    width: 400px;  
+    width: 400px;
     & a,
     label {
       color: #222428;
@@ -192,14 +191,14 @@ export default {
       font-style: normal;
       font-weight: 300;
       letter-spacing: 0.28px;
-      line-height: 16px;  
+      line-height: 16px;
       @include onPhone {
         font-size: 12px;
       }
-    }  
+    }
     @include onPhone {
       width: 100%;
-    }  
+    }
     & a {
       color: $primary;
       padding-left: 10px;

@@ -61,7 +61,7 @@ export default {
             padding: 35px 10px;
         }
     }
-  
+
     &__item:hover {
       border-left: 4px solid #0ad69c;
     }

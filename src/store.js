@@ -1,20 +1,32 @@
-import VueAxios from "vue-axios";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
 
-const store = new Vuex.store({
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
   state: {
-    user: Object,
+    user: {},
   },
   mutations: {
-    SET_USER: (state, payload) => {
-      state.user = payload;
-    }
+    SET_USER: (state, user) => {
+      state.user = user;
+      console.log(state.user);
+    },
   },
-  getters: {
-    USER: state => {
-      return state.user;
-    }
+  actions: {
+    SAVE_USER: async (context, user) => {
+    
+      const { data } = await axios.post('http://localhost:7070/api/updateUser', user );
+      if (data.status === 200) {
+        context.commit('SET_USER', user);
+      }
+    },
   },
-})
 
-//this.$store.getters.USER;
-//this.$store.commit('SET_USER', user);
+});
+
+export default store;
+
+// this.$store.getters.user;
+// this.$store.dispatch('SAVE_USER', user);

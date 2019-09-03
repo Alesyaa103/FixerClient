@@ -15,8 +15,7 @@
 </div>
 </template>
 <script>
-import axios from 'axios';
-import { required, email} from 'vuelidate/lib/validators';
+import { required, email } from 'vuelidate/lib/validators';
 
 export default {
   name: 'signUp1',
@@ -60,7 +59,7 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      };
+      }
       this.onSignUp1(
         this.user,
       );

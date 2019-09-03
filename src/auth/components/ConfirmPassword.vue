@@ -9,7 +9,7 @@
 export default {
   name: 'ConfirmPassword',
   props: {
-    password: '',
+    password: String,
   },
   computed: {
     show() {

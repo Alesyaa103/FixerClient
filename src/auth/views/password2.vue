@@ -26,6 +26,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/styles/_mixins.scss";
+
 .envelop{
     align-items: center;
     background-image: url('../../assets/auth/bg.svg');

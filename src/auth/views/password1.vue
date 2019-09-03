@@ -10,7 +10,7 @@
 </div>
 </template>
 <script>
-import { required, email} from 'vuelidate/lib/validators';
+import { required, email } from 'vuelidate/lib/validators';
 
 export default {
   name: 'password1',
@@ -39,7 +39,7 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      };
+      }
       this.onReset1(
         this.user,
       );
@@ -52,6 +52,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/styles/_mixins.scss";
+
 .container{
     align-self: auto;
     background-color: $fon;

@@ -12,8 +12,7 @@
             </div>
 </template>
 <script>
-import axios from 'axios';
-import { required, minLength, email} from 'vuelidate/lib/validators';
+import { required, minLength, email } from 'vuelidate/lib/validators';
 
 export default {
   name: 'signIn',
@@ -21,8 +20,8 @@ export default {
   data() {
     return {
       user: {
-        email: '',
         password: '',
+        email: '',
       },
       headerItems: {
         headerText: 'Do not have an account?',
@@ -49,14 +48,14 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      };
+      }
       this.onSignIn(
         this.user,
       );
     },
   },
   mounted() {
-    this.$emit('headerItems', this.headerItems);
+    this.$emit('returnItems', this.headerItems);
   },
 };
 </script>

@@ -8,16 +8,16 @@
 </template>
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import HeaderAuth from './components/HeaderAuth.vue';
 
 export default {
   name: 'app',
-  props: ['onReturnUser'],
   data() {
     return {
       headerItems: {},
-      user: {},
       password: '',
+      user: {},
     };
   },
   components: {
@@ -28,18 +28,29 @@ export default {
       this.user = user;
       this.axios.post('reset1', this.user)
         .then((res) => {
-          this.$router.push('/auth/password3');
-        }, (err) => {
-          console.log(err);
+          if (res.data.err) {
+            const error = res.data.err;
+            this.showErr(error);
+          } else {
+            this.$router.push('/auth/password3');
+          }
+        },
+        (err) => {
+          this.showErr(err);
         });
     },
     onReset2(password) {
       this.user.password = password;
-      console.log(this.user);
       this.axios.post('reset2', this.user)
         .then((res) => {
-          this.$router.push('/auth/signin');
-        }, (err) => {
+          if (res.data.err) {
+            const error = res.data.err;
+            this.showErr(error);
+          } else {
+            this.$router.push('/auth/signin');
+          }
+        },
+        (err) => {
           console.log(err);
         });
     },
@@ -47,8 +58,15 @@ export default {
       this.user.password = password;
       this.axios.post('signUp', this.user)
         .then((res) => {
-          this.$router.push('/auth/signUp3');
-        }, (err) => {
+          if (res.data.err) {
+            const error = res.data.err;
+            this.showErr(error);
+            this.$router.push('/auth/signUp1');
+          } else {
+            this.$router.push('/auth/signUp3');
+          }
+        },
+        (err) => {
           console.log(err);
         });
     },
@@ -57,15 +75,35 @@ export default {
       this.$router.push('/auth/signUp2');
     },
     onSignIn(user) {
-      this.user = user;
       this.axios.post('signIn', user)
         .then((res) => {
-          this.saveToken(res);  
-          this.$router.push('/personal/profile');
+          if (res.data.err) {
+            const error = res.data.err;
+            this.showErr(error);
+          } else {
+            this.saveToken(res);
+            this.saveUser(res);
+            this.$router.push('/personal/profile');
+          }
         },
         (err) => {
           console.log(err);
         });
+    },
+    showErr(error) {
+      Swal.fire({
+        position: 'top',
+        type: 'error',
+        title: error,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    },
+    saveUser(res) {
+      if (res.data.user) {
+        const { user } = res.data;
+        this.$store.commit('SET_USER', user);
+      }
     },
     saveToken(res) {
       if (res.data.token) {
@@ -75,14 +113,6 @@ export default {
     onReturnItems(data) {
       this.headerItems = data;
     },
-    returnUser(){
-      this.onReturnUser(
-        this.user,
-      )
-    }
-  },
-  mounted() {
-    this.$emit('returnUser', this.returnUser);
   },
 };
 </script>
@@ -92,5 +122,10 @@ export default {
         display: flex;
         height: 92%;
         justify-content: center;
-    }
+}
+
+.alert{
+  background-color: #fff;
+  border: 2px solid black;
+}
 </style>

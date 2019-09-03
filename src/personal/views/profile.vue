@@ -1,12 +1,12 @@
 <template>
   <section class="wraper">
     <div class="information">
-      <button class="information__button" id="personal"> PERSONAL INFORMATION</button>
-      <button class="information__button grey" id="account">ACCOUNT INFORMATION</button>
+      <button class="information__button"  :class="{grey:selectedAccount}"  id="personal" @click="choosePersonal"> PERSONAL INFORMATION</button>
+      <button class="information__button " :class="{grey:selectedPersonal}" id="account" @click="chooseAccount">ACCOUNT INFORMATION</button>
     </div>
-    <div class="content">
+    <div class="content" :class="{hidden:selectedPersonal}">
       <div class="content__photo">
-        <img class="content__image" src="@/assets/personal/avatar.svg" alt="" />
+        <img class="content__image" :src="user.photo" alt="" />
         <button class="content__button">
           <img src="@/assets/personal/pencil.svg" alt="" />
           <p>Change photo</p>
@@ -14,14 +14,15 @@
       </div>
       <form action="###">
         <fieldset>
-          <span>First name<input type="text" :value="user.firstname"/></span>
+          <span>First name<input type="text" @change="updateUser" v-model="user.firstname"/></span>
           <span>title<select>
-              <option disabeld="disabeld" value="Mr">Mr</option>
+              <option disabled selected style='display:none;'> {{user.title}}</option>
+              <option value="Mr">Mr</option>
               <option value="Mrs">Mrs</option>
             </select>
           </span>
           <span>country<select class="location">
-              <option> </option>
+              <option disabled selected style='display:none;'> {{user.location.country}} </option>
               <option value="AF">AFGHANISTAN</option>
               <option value="AD">ANDORRA</option>
               <option value="AO">ANGOLA</option>
@@ -87,24 +88,25 @@
           </span>
         </fieldset>
         <fieldset>
-          <span>Last name<input type="text" :value="user.lastname"/></span>
+          <span>Last name<input type="text" v-model="user.lastname" /></span>
           <span>mobile phone
             <div class="mobile">
-              <div class="mobile__country">
-                <img src="@/assets/personal/flag.svg" alt="" />
-                <img src="@/assets/personal/Shape.svg" alt="" />
-              </div>
-              <input class="mobile__number" type="tel" size="10" value="+65" />
+              <select class="mobile__country">
+                <option disabled selected style='display:none;'> {{user.mobile.code}}</option>
+                <option value="+38">+38</option>
+                <option value="+48">+48</option>
+              </select>
+              <input class="mobile__number" type="tel" size="10" v-model="user.mobile.number">
             </div>
           </span>
-          <span>company<input type="text" :value="user.company"/></span>
+          <span>company<input type="text" v-model="user.company"/></span>
         </fieldset>
       </form>
     </div>
-    <div class="account hidden">
+    <div class="account" :class="{hidden:selectedAccount}">
       <form class="account__form" action="###">
-        <fieldset><span>username<input type="text" value="sarahbarnes" /></span></fieldset>
-        <fieldset><span>e-mail<input type="text" value="sarahbbb@gmail.com" /></span></fieldset>
+        <fieldset><span>username<input type="text" v-model="user.username" /></span></fieldset>
+        <fieldset><span>e-mail<input type="text" v-model="user.email" /></span></fieldset>
       </form><a class="account__link" href="###">
         <p>Change password</p><img src="@/assets/personal/part.svg" alt="" />
       </a>
@@ -119,9 +121,6 @@ import fourthPath from '@/assets/personal/calendar.svg';
 
 export default {
   name: 'profile',
-  props: {
-    user: Object,
-  },
   data() {
     return {
       returnItems: {
@@ -136,12 +135,26 @@ export default {
         fifthLink: '',
         fifthPath: '',
       },
+      user: {},
+      selectedAccount: true,
+      selectedPersonal: false,
     };
   },
   methods: {
-
+    choosePersonal() {
+      this.selectedPersonal = true;
+      this.selectedAccount = false;
+    },
+    chooseAccount() {
+      this.selectedPersonal = false;
+      this.selectedAccount = true;
+    },
+    updateUser() {
+      this.$store.dispatch('SAVE_USER', this.user);
+    },
   },
   mounted() {
+    this.user = this.$store.state.user;
     this.$emit('returnItems', this.returnItems);
   },
 };
@@ -181,6 +194,7 @@ export default {
       line-height: 19px;
       text-transform: uppercase;
       width: 50%;
+      outline: none;
     }
   }
 
@@ -188,7 +202,7 @@ export default {
     display: flex;
     margin-top: 50px;
     width: 800px;
-    
+
     &__button {
       display: flex;
       background-color: $fon;
@@ -210,6 +224,12 @@ export default {
     &__photo {
       display: block;
     }
+
+    &__image {
+      border-radius: 50%;
+      width: 135px;
+      height: 135px;
+    }
   }
 
   .account {
@@ -222,7 +242,7 @@ export default {
       height: 14px;
       justify-content: space-between;
       margin: 40px auto;
-      width: 135px;
+      width: 145px;
 
       & p {
         color: #01134e;
@@ -286,6 +306,7 @@ export default {
   .location {
     background: url("../../assets/personal/geo.svg") no-repeat transparent;
     background-position: 6% 50%;
+    padding-left: 25px;
   }
 
   .cover {
@@ -302,7 +323,6 @@ export default {
       align-items: center;
       border: 2px solid #f2f2f2;
       display: flex;
-      height: 38px;
       justify-content: space-around;
       width: 76px;
     }

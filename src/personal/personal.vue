@@ -3,22 +3,21 @@
         <Sidebar :returnItems="returnItems"/>
         <section class="container">
             <HeaderPro :returnItems="returnItems"/>
-            <router-view @returnItems="onReturnItems" :user="user"></router-view>
+            <router-view @returnItems="onReturnItems" :workers="workers"></router-view>
         </section>
     </div>
 </template>
 <script>
+import axios from 'axios';
 import HeaderPro from './components/HeaderPro.vue';
 import Sidebar from './components/Sidebar.vue';
 
 export default {
   name: 'app',
-  props: {
-    user: Object,
-  },
   data() {
     return {
       returnItems: {},
+      workers: [],
     };
   },
   components: {
@@ -30,6 +29,18 @@ export default {
       this.returnItems = data;
     },
   },
+  mounted() {
+    this.axios.get('returnWorkers')
+      .then ((res) => {
+        if (res.data.workers) {
+          this.workers = res.data.workers;
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+      )
+  }
 };
 </script>
 <style lang="scss" scoped>

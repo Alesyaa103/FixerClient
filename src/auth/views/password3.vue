@@ -12,8 +12,8 @@
 </div>
 </template>
 <script>
+import { required, sameAs } from 'vuelidate/lib/validators';
 import ConfirmPassword from '../components/ConfirmPassword.vue';
-import { required, sameAs} from 'vuelidate/lib/validators';
 
 export default {
   name: 'password3',
@@ -47,10 +47,10 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      };
-        this.onReset2(
-          this.password,
-        );
+      }
+      this.onReset2(
+        this.password,
+      );
     },
   },
   mounted() {
