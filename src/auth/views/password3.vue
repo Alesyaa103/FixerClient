@@ -23,11 +23,6 @@ export default {
   },
   data() {
     return {
-      headerItems: {
-        headerText: 'Do not have an account?',
-        headerPath: 'signup1',
-        headerLink: 'SignUp',
-      },
       password: '',
       passwordConfirm: '',
     };
@@ -52,9 +47,6 @@ export default {
         this.password,
       );
     },
-  },
-  mounted() {
-    this.$emit('returnItems', this.headerItems);
   },
 };
 

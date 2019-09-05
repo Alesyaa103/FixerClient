@@ -16,7 +16,7 @@ const store = new Vuex.Store({
   },
   actions: {
     SAVE_USER: async (context, user) => {
-      const { data } = await axios.post('http://localhost:7070/api/updateUser', user);
+      const { data } = await axios.put('http://localhost:7070/api/updateUser', user);
       if (data.status === 200) {
         context.commit('SET_USER', user);
       }

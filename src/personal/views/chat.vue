@@ -227,33 +227,9 @@
 </section>
 </template>
 <script>
-import firstPath from '../../assets/personal/searchActiv.svg';
-import secondPath from '../../assets/personal/myprofile.svg';
-import thirdPath from '../../assets/personal/handyman.svg';
-import fourthPath from '../../assets/personal/team.svg';
-import fifthPath from '../../assets/personal/messageActive.svg';
 
 export default {
   name: 'chat',
-  data() {
-    return {
-      returnItems: {
-        firstLink: 'search',
-        firstPath,
-        secondLink: 'profile',
-        secondPath,
-        thirdLink: '',
-        thirdPath,
-        fourthLink: 'admin',
-        fourthPath,
-        fifthLink: 'chat',
-        fifthPath,
-      },
-    };
-  },
-  mounted() {
-    this.$emit('returnItems', this.returnItems);
-  },
 };
 </script>
 <style lang="scss" scoped>

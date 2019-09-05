@@ -28,11 +28,6 @@ export default {
         username: '',
         email: '',
       },
-      headerItems: {
-        headerText: 'Already have an account?',
-        headerPath: 'signin',
-        headerLink: 'Login',
-      },
       submited: false,
     };
   },
@@ -64,9 +59,6 @@ export default {
         this.user,
       );
     },
-  },
-  mounted() {
-    this.$emit('returnItems', this.headerItems);
   },
 };
 </script>

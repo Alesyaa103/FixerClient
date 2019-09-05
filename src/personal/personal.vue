@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-        <Sidebar :returnItems="returnItems"/>
+        <Sidebar v-if="showBar"/>
         <section class="container">
-            <HeaderPro :returnItems="returnItems" />
-            <router-view @returnItems="onReturnItems"></router-view>
+            <HeaderPro :onShowMenu="onShowMenu"/>
+            <router-view></router-view>
         </section>
     </div>
 </template>
@@ -14,18 +14,18 @@ import Sidebar from './components/Sidebar.vue';
 
 export default {
   name: 'app',
-  data() {
-    return {
-      returnItems: Object,
-    };
-  },
   components: {
     HeaderPro,
     Sidebar,
   },
+  data() {
+    return {
+      showBar: true,
+    };
+  },
   methods: {
-    onReturnItems(data) {
-      this.returnItems = data;
+    onShowMenu(showBar) {
+      this.showBar=showBar;
     },
   },
 };
@@ -35,6 +35,9 @@ export default {
 #app{
     display: flex;
     overflow: hidden;
+    @include onTablet {
+      overflow: auto;
+    }
 }
 .container {
     background: #f9fafc;

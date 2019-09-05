@@ -8,18 +8,6 @@
 <script>
 export default {
   name: 'signUp3',
-  data() {
-    return {
-      headerItems: {
-        headerText: 'Already have an account?',
-        headerPath: 'signin',
-        headerLink: 'Login',
-      },
-    };
-  },
-  mounted() {
-    this.$emit('returnItems', this.headerItems);
-  },
 };
 </script>
 <style lang="scss" scoped>

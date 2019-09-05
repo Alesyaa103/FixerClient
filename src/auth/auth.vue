@@ -1,8 +1,8 @@
 <template>
     <div id="app">
-        <HeaderAuth :headerItems="headerItems"/>
+        <HeaderAuth/>
         <section class="content">
-            <router-view @returnItems="onReturnItems" :onSignIn="onSignIn" :onSignUp1="onSignUp1" :onSignUp2="onSignUp2" :onReset1="onReset1" :onReset2="onReset2" :user="user"> </router-view>
+            <router-view :onSignIn="onSignIn" :onSignUp1="onSignUp1" :onSignUp2="onSignUp2" :onReset1="onReset1" :onReset2="onReset2" :user="user"> </router-view>
         </section>
     </div>
 </template>
@@ -15,7 +15,6 @@ export default {
   name: 'app',
   data() {
     return {
-      headerItems: {},
       password: '',
       user: {},
     };
@@ -93,6 +92,7 @@ export default {
     showErr(error) {
       Swal.fire({
         position: 'top',
+        toast: true,
         type: 'error',
         title: error,
         showConfirmButton: false,
@@ -109,9 +109,6 @@ export default {
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
       }
-    },
-    onReturnItems(data) {
-      this.headerItems = data;
     },
   },
 };

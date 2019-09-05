@@ -23,11 +23,6 @@ export default {
         password: '',
         email: '',
       },
-      headerItems: {
-        headerText: 'Do not have an account?',
-        headerPath: 'signup1',
-        headerLink: 'SignUp',
-      },
     };
   },
   validations: {
@@ -53,9 +48,6 @@ export default {
         this.user,
       );
     },
-  },
-  mounted() {
-    this.$emit('returnItems', this.headerItems);
   },
 };
 </script>

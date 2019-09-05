@@ -119,21 +119,9 @@
 </section>
 </template>
 <script>
-import firstPath from '../../assets/personal/team.svg';
 
 export default {
   name: 'admin',
-  data() {
-    return {
-      returnItems: {
-        firstLink: 'admin',
-        firstPath,
-      },
-    };
-  },
-  mounted() {
-    this.$emit('returnItems', this.returnItems);
-  },
 };
 </script>
 <style lang="scss" scoped>

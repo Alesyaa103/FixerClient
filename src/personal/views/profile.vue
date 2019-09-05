@@ -1,10 +1,10 @@
 <template>
-  <section class="wraper">
+  <section v-if="user" class="wraper">
     <div class="information">
-      <button class="information__button"  :class="{grey:selectedAccount}"  id="personal" @click="choosePersonal"> PERSONAL INFORMATION</button>
-      <button class="information__button " :class="{grey:selectedPersonal}" id="account" @click="chooseAccount">ACCOUNT INFORMATION</button>
+      <button class="information__button"  :class="{grey:selectedAccount}"  id="personal" @click="chooseScreen"> PERSONAL INFORMATION</button>
+      <button class="information__button " :class="{grey:!selectedAccount}" id="account" @click="chooseScreen">ACCOUNT INFORMATION</button>
     </div>
-    <div class="content" v-if="selectedPersonal">
+    <div class="content" v-if="!selectedAccount">
       <div class="content__photo">
         <img class="content__image" :src="user.photo" alt="" />
         <button class="content__button">
@@ -14,7 +14,7 @@
       </div>
       <form>
         <fieldset>
-          <span>First name<input type="text" @change="updateUser" v-model="user.firstname"/></span>
+          <span>First name<input type="text" @change="updateUser" v-model="user.firstname" :class="{errorInput: $v.user.firstname.$error}" @blur="$v.user.firstname.$touch()"/></span>
           <span>title<select @change="updateUser" v-model="user.title">
               <option disabled selected style='display:none;'> {{user.title}}</option>
               <option value="Mr">Mr</option>
@@ -30,7 +30,7 @@
           </span>
         </fieldset>
         <fieldset>
-          <span>Last name<input type="text" v-model="user.lastname" @change="updateUser"/></span>
+          <span>Last name<input type="text" v-model="user.lastname" @change="updateUser" :class="{errorInput: $v.user.lastname.$error}" @blur="$v.user.lastname.$touch()"/></span>
           <span>mobile phone
             <div class="mobile">
               <select class="mobile__country" @change="updateUser" v-model="user.mobile.code">
@@ -47,8 +47,8 @@
     </div>
     <div class="account" v-if="selectedAccount">
       <form>
-        <fieldset><span>username<input type="text" v-model="user.username" @change="updateUser"/></span></fieldset>
-        <fieldset><span>e-mail<input type="text" v-model="user.email" @change="updateUser"/></span></fieldset>
+        <fieldset><span>username<input type="text" v-model="user.username" @change="updateUser" :class="{errorInput: $v.user.username.$error}" @blur="$v.user.username.$touch()"/></span></fieldset>
+        <fieldset><span>e-mail<input type="text" v-model="user.email" @change="updateUser" :class="{errorInput: $v.user.email.$error}" @blur="$v.user.email.$touch()"/></span></fieldset>
       </form><button class="account__link">
         <p>Change password</p><img src="@/assets/personal/part.svg" alt="" />
       </button>
@@ -56,42 +56,36 @@
   </section>
 </template>
 <script>
-import firstPath from '@/assets/personal/search.svg';
-import secondPath from '@/assets/personal/profileActiv.svg';
-import thirdPath from '@/assets/personal/messages.svg';
-import fourthPath from '@/assets/personal/calendar.svg';
+import { required, email } from 'vuelidate/lib/validators';
 
 export default {
   name: 'profile',
   data() {
     return {
-      returnItems: {
-        firstLink: 'search',
-        firstPath,
-        secondLink: 'profile',
-        secondPath,
-        thirdLink: 'chat',
-        thirdPath,
-        fourthLink: '',
-        fourthPath,
-        fifthLink: '',
-        fifthPath: '',
-        // topFirstPath: 'My profile',
-        // topSecondPath: '',
-      },
       user: {},
       selectedAccount: false,
-      selectedPersonal: true,
     };
   },
-  methods: {
-    choosePersonal() {
-      this.selectedPersonal = true;
-      this.selectedAccount = false;
+  validations: {
+    user: {
+      email: {
+        required,
+        email,
+      },
+      firstname: {
+        required,
+      },
+      lastname: {
+        required,
+      },
+      username: {
+        required,
+      },
     },
-    chooseAccount() {
-      this.selectedPersonal = false;
-      this.selectedAccount = true;
+  },
+  methods: {
+    chooseScreen() {
+      this.selectedAccount = ! this.selectedAccount;
     },
     updateUser() {
       this.$store.dispatch('SAVE_USER', this.user);
@@ -100,7 +94,6 @@ export default {
   },
   mounted() {
     this.user = this.$store.state.user;
-    this.$emit('returnItems', this.returnItems);
   },
 };
 
@@ -120,7 +113,8 @@ export default {
     @include onPhone {
       height: 86%;
       margin: 2% auto;
-      width: 100%;
+      width: 95%;
+      padding: 1%;
     }
   }
 
@@ -146,7 +140,7 @@ export default {
     }
 
     @include onTablet{
-      width: 90%;
+      width: 100%;
     }
   }
 
@@ -202,7 +196,7 @@ export default {
     }
     @include onPhone {
       margin: 10px auto;
-      width: 90%;
+      width: 100%;
     }
   }
 
@@ -236,6 +230,9 @@ export default {
       width: 50%;
       margin: 50px auto;
     }
+      @include onPhone{
+      width: 100%;
+    }
   }
 
   form {
@@ -253,6 +250,10 @@ export default {
       line-height: 14px;
       margin-bottom: 30px;
       text-transform: uppercase;
+      @include onPhone{
+        width: 237px;
+        margin: 15px auto;
+      }
 
       & input,
       select {
@@ -270,8 +271,13 @@ export default {
         margin-top: 4px;
         padding-left: 13px;
         width: 259px;
+        @include onPhone{
+          width: 220px;
+        }
       }
-
+      .errorInput{
+        border-color: #FF6359;
+      }
       & select {
         height: 42px;
         width: 276px;
@@ -281,6 +287,9 @@ export default {
         background-image: url(../../assets/personal/Shape.svg);
         background-repeat: no-repeat;
         background-position: 250px 17px;
+        @include onPhone{
+          width: 237px;
+        }
       }
 
       & select::-ms-expand {
@@ -291,13 +300,16 @@ export default {
       display: block;
     }
     @include onPhone {
-      width: 80%;
+      width: 100%;
     }
   }
 
   fieldset {
     margin-left: 33px;
     width: 280px;
+    @include onPhone {
+      margin: 0px auto;
+    }
   }
 
   .location {
@@ -352,6 +364,9 @@ export default {
 
     &__number {
       width: 179px;
+      @include onPhone{
+        width: 140px;
+      }
     }
   }
 

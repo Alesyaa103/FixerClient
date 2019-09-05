@@ -35,11 +35,6 @@ export default {
   data() {
     return {
       password: '',
-      headerItems: {
-        headerText: 'Already have an account?',
-        headerPath: 'signin',
-        headerLink: 'Login',
-      },
       checked1: false,
       checked2: false,
       passwordConfirm: '',
@@ -68,9 +63,6 @@ export default {
         );
       }
     },
-  },
-  mounted() {
-    this.$emit('returnItems', this.headerItems);
   },
 };
 

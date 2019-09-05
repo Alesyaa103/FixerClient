@@ -4,20 +4,21 @@
   </div>
 </template>
 <script>
-  import Worker from '../components/Worker.vue';
+import Worker from './Worker.vue';
 
-  export default {
-    name: 'resultWorkers',
-    props: {
-      workers: Array,
-    },
-    components: {
-      Worker,
-    }
-}  
+export default {
+  name: 'resultWorkers',
+  props: {
+    workers: Array,
+  },
+  components: {
+    Worker,
+  },
+};
 
 </script>
 <style lang="scss" scoped>
+@import "@/styles/_mixins.scss";
 
   .workers {
     display: flex;
@@ -26,6 +27,11 @@
     justify-content: space-between;
     min-width: 750px;
     overflow: auto;
+    @include onTablet{
+      min-width: 250px;
+      display: block;
+      margin: 10px auto;
+    }
   }
 
   ::-webkit-scrollbar-button {

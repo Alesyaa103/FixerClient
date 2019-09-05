@@ -44,10 +44,6 @@
 <script>
 import resultMap from './components/resultMap.vue';
 import resultWorkers from './components/resultWorkers.vue';
-import firstPath from '../../../assets/personal/searchActiv.svg';
-import secondPath from '../../../assets/personal/myprofile.svg';
-import thirdPath from '../../../assets/personal/messages.svg';
-import fourthPath from '../../../assets/personal/calendar.svg';
 
 export default {
   name: 'search',
@@ -57,16 +53,6 @@ export default {
   },
   data() {
     return {
-      returnItems: {
-        firstLink: 'search',
-        firstPath,
-        secondLink: 'profile',
-        secondPath,
-        thirdLink: 'chat',
-        thirdPath,
-        fourthLink: '',
-        fourthPath,
-      },
       showResults: true,
       showMap: false,
       showText: '',
@@ -74,7 +60,6 @@ export default {
     };
   },
   mounted() {
-    this.$emit('returnItems', this.returnItems);
     this.axios.get('returnWorkers')
       .then((res) => {
         if (res.data.workers) {
@@ -107,7 +92,7 @@ export default {
 
     @include onPhone {
       height: 93%;
-      margin: 0 auto;
+      margin: 10px auto;
       width: 100%;
     }
   }
@@ -152,6 +137,12 @@ export default {
         line-height: 16px;
         margin-top: 4px;
         padding-left: 13px;
+        @include onTablet{
+          width: 133px;
+        }
+        @include onPhone{
+          width: 213px;
+        }
       }
     }
   }
@@ -164,6 +155,13 @@ export default {
   .cover {
     display: flex;
     margin: 3% 0;
+    @include onTablet{  
+      margin: 3% 2px;
+      width:100%;
+    }
+     @include onPhone {
+      display: block;
+    }
   }
 
   .search {
@@ -181,7 +179,12 @@ export default {
       background-image: url(../../../assets/personal/Shape.svg);
       background-repeat: no-repeat;
       background-position: 225px 17px;
-
+      @include onTablet{
+        width: 150px;
+      }
+      @include onPhone{
+        width: 230px;
+      }
     & select::-ms-expand {
       display: none; /* hide the default arrow in ie10 and ie11 */
       }
@@ -214,11 +217,27 @@ export default {
       text-align: center;
       text-transform: uppercase;
       width: 250px;
+      @include onTablet{
+        width: 150px;
+      }
+      @include onPhone{
+        width: 235px;
+      }
+    }
+    @include onTablet{
+      width: 150px;
+    }
+    @include onPhone{
+      width: 235px;
+      margin: 0 auto;
     }
   }
   .results {
     height: 100%;
     margin: 0 5%;
+    @include onTablet{
+      margin: 5px auto;
+    }
   }
 
   .category {
@@ -240,6 +259,9 @@ export default {
         letter-spacing: 0.28px;
         line-height: 14px;
         text-transform: uppercase;
+        @include onPhone{
+          font-size: 12px;
+        }
       }
     }
 
@@ -257,7 +279,18 @@ export default {
         font-weight: 300;
         letter-spacing: -0.046704px;
         line-height: 28px;
+        @include onPhone{
+          font-size: 12px;
+        }
       }
+      @include onTablet{
+        width: 150px;
+        jusify-content: space-around;
+      }
+    }
+    @include onPhone{
+      width: 260px;
+      margin: 0 auto;
     }
   }
 

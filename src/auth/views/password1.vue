@@ -17,11 +17,6 @@ export default {
   props: ['onReset1'],
   data() {
     return {
-      headerItems: {
-        headerText: 'Back to',
-        headerPath: 'signin',
-        headerLink: 'SignIn',
-      },
       user: {},
     };
   },
@@ -44,9 +39,6 @@ export default {
         this.user,
       );
     },
-  },
-  mounted() {
-    this.$emit('returnItems', this.headerItems);
   },
 };
 </script>

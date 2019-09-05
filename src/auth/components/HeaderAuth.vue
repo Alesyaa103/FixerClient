@@ -1,17 +1,59 @@
 <template>
-    <header class="header">
-        <figure class="header__logo"></figure>
-        <div class="header__text">
-            <span>{{headerItems.headerText}}</span>
-            <router-link :to="headerItems.headerPath">{{headerItems.headerLink}}</router-link>
-        </div>
-    </header>
+  <header class="header">
+    <figure class="header__logo"></figure>
+    <div v-if="headerItems" class="header__text">
+      <span>{{headerItems.headerText}}</span>
+      <router-link :to="headerItems.headerPath">{{headerItems.headerLink}}</router-link>
+    </div>
+  </header>
 </template>
 <script>
 export default {
   name: 'HeaderAuth',
-  props: {
-    headerItems: Object,
+  data() {
+    return {
+      headerItems: null,
+    };
+  },
+  methods: {
+    setHeaderItems() {
+      switch (this.$route.path) {
+        case ('/auth/password3'):
+        case ('/auth/signin'): {
+          this.headerItems = {
+            headerText: 'Do not have an account?',
+            headerPath: 'signup1',
+            headerLink: 'SignUp',
+          };
+          break;
+        }
+        case ('/auth/password2'):
+        case ('/auth/password1'): {
+          this.headerItems = {
+            headerText: 'Back to',
+            headerPath: 'signin',
+            headerLink: 'SignIn',
+          };
+          break;
+        }
+        default: {
+          this.headerItems = {
+            headerText: 'Already have an account?',
+            headerPath: 'signin',
+            headerLink: 'Log In',
+          };
+          break;
+        }
+      }
+    },
+  },
+  watch: {
+    $route() {
+      this.setHeaderItems();
+    },
+  },
+  mounted() {
+    this.setHeaderItems();
   },
 };
 </script>
@@ -37,7 +79,7 @@ export default {
         }
 
         @include onPhone{
-            margin: 0 20px;
+            margin:  3px 20px;
             width: 138px;
         }
     }

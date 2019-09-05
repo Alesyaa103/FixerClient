@@ -10,16 +10,8 @@ export default {
   name: 'password2',
   data() {
     return {
-      headerItems: {
-        headerText: 'Back to',
-        headerPath: 'signin',
-        headerLink: 'SignIn',
-      },
       user: {},
     };
-  },
-  mounted() {
-    this.$emit('returnItems', this.headerItems);
   },
 };
 

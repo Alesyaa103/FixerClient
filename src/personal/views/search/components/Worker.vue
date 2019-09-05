@@ -25,9 +25,10 @@ export default {
   props: {
     worker: Object,
   },
-}
+};
 </script>
 <style lang="scss" scoped>
+@import "@/styles/_mixins.scss";
 .worker {
     align-items: center;
     border: 1px solid rgba(237, 237, 237, 0.2);
@@ -44,6 +45,13 @@ export default {
       height: 76px;
       width: 76px;
       border-radius: 50%;
+    }
+    @include onTablet{
+      margin: 10px auto;
+    }
+    @include onPhone{
+      width: 245px;
+      margin: 3px auto;
     }
   }
 
