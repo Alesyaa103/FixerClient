@@ -51,7 +51,7 @@ export default {
           }
         },
         (err) => {
-          console.log(err);
+          this.showErr(err);
         });
     },
     onSignUp2(password) {
@@ -67,7 +67,7 @@ export default {
           }
         },
         (err) => {
-          console.log(err);
+          this.showErr(err);
         });
     },
     onSignUp1(user) {
@@ -87,7 +87,7 @@ export default {
           }
         },
         (err) => {
-          console.log(err);
+          this.showErr(err);
         });
     },
     showErr(error) {

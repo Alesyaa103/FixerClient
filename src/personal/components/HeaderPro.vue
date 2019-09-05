@@ -9,12 +9,10 @@
     <a class="linetop__words" href="###">Home</a>
     <img class="linetop__element" src="@/assets/personal/Vector.svg" alt="" />
     <a class="linetop__words" href="###">Network</a>
+    <a class="linetop__words" href="###">Results</a>
   </div>
   <div class="profile">
-    <a class="profile__link" href="###">
-      <img src="@/assets/personal/profile.svg" alt="" />
-      <p class="linetop__words">Sarah Freeman</p>
-    </a>
+    <p class="linetop__words">{{user.firstname}} {{user.lastname}}</p>
     <div class="profile__button">
      <img src="@/assets/personal/Shape.svg" alt="">
       <ul>
@@ -29,13 +27,24 @@
 <script>
 export default {
   name: 'HeaderPro',
+  data() {
+    return {
+      user: {},
+    }
+  },
   props: {
-    returnItems: {},
+    returnItems: Object,
   },
   methods: {
     logOut() {
       localStorage.removeItem('token');
+      this.user = {};
+      this.$store.commit('SET_USER', this.user);
+      this.$router.push('/auth/signIn');
     },
+  },
+  mounted() {
+    this.user = this.$store.state.user;
   },
 };
 </script>
@@ -46,6 +55,7 @@ export default {
   background: #fff;
   border-bottom: 1px solid #dae4f2;
   display: flex;
+  max-height: 60px;
   height: 7%;
   justify-content: space-between;
 }
@@ -94,7 +104,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   margin-right: 57px;
-  width: 13%;
+  width: 150px;
 
   &__link {
     align-items: center;
@@ -112,6 +122,9 @@ export default {
         display: block;
         cursor: pointer;
     }
+  }
+  @include onPhone {
+    margin-right: 5px;
   }
 }
 ul{

@@ -2,8 +2,8 @@
     <div id="app">
         <Sidebar :returnItems="returnItems"/>
         <section class="container">
-            <HeaderPro :returnItems="returnItems"/>
-            <router-view @returnItems="onReturnItems" :workers="workers"></router-view>
+            <HeaderPro :returnItems="returnItems" />
+            <router-view @returnItems="onReturnItems"></router-view>
         </section>
     </div>
 </template>
@@ -16,8 +16,7 @@ export default {
   name: 'app',
   data() {
     return {
-      returnItems: {},
-      workers: [],
+      returnItems: Object,
     };
   },
   components: {
@@ -29,18 +28,6 @@ export default {
       this.returnItems = data;
     },
   },
-  mounted() {
-    this.axios.get('returnWorkers')
-      .then ((res) => {
-        if (res.data.workers) {
-          this.workers = res.data.workers;
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-      )
-  }
 };
 </script>
 <style lang="scss" scoped>
@@ -52,7 +39,9 @@ export default {
 .container {
     background: #f9fafc;
     width: 100%;
-
+    @include onTablet {
+      width: 95%;
+    }
     @include onPhone {
         height: 100%;
         width: 100%;

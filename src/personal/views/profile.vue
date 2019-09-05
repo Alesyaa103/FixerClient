@@ -4,7 +4,7 @@
       <button class="information__button"  :class="{grey:selectedAccount}"  id="personal" @click="choosePersonal"> PERSONAL INFORMATION</button>
       <button class="information__button " :class="{grey:selectedPersonal}" id="account" @click="chooseAccount">ACCOUNT INFORMATION</button>
     </div>
-    <div class="content" :class="{hidden:selectedPersonal}">
+    <div class="content" v-if="selectedPersonal">
       <div class="content__photo">
         <img class="content__image" :src="user.photo" alt="" />
         <button class="content__button">
@@ -12,104 +12,46 @@
           <p>Change photo</p>
         </button>
       </div>
-      <form action="###">
+      <form>
         <fieldset>
           <span>First name<input type="text" @change="updateUser" v-model="user.firstname"/></span>
-          <span>title<select>
+          <span>title<select @change="updateUser" v-model="user.title">
               <option disabled selected style='display:none;'> {{user.title}}</option>
               <option value="Mr">Mr</option>
               <option value="Mrs">Mrs</option>
             </select>
           </span>
-          <span>country<select class="location">
+          <span>COUNTRY<select class="location" @change="updateUser" v-model="user.location.country">
               <option disabled selected style='display:none;'> {{user.location.country}} </option>
-              <option value="AF">AFGHANISTAN</option>
-              <option value="AD">ANDORRA</option>
-              <option value="AO">ANGOLA</option>
-              <option value="AQ">ANTARCTICA</option>
-              <option value="AR">ARGENTINA</option>
-              <option value="AM">ARMENIA</option>
-              <option value="AU">AUSTRALIA</option>
-              <option value="AT">AUSTRIA</option>
-              <option value="AZ">AZERBAIJAN</option>
-              <option value="BS">BAHAMAS</option>
-              <option value="BD">BANGLADESH</option>
-              <option value="BY">BELARUS</option>
-              <option value="BE">BELGIUM</option>
-              <option value="BR">BRAZIL</option>
-              <option value="BG">BULGARIA</option>
-              <option value="CA">CANADA</option>
-              <option value="CL">CHILE</option>
-              <option value="CN">CHINA</option>
-              <option value="CO">COLOMBIA</option>
-              <option value="CU">CUBA</option>
-              <option value="CZ">CZECH REPUBLIC</option>
-              <option value="DO">DOMINICAN REPUBLIC</option>
-              <option value="EC">ECUADOR</option>
-              <option value="EG">EGYPT</option>
-              <option value="EE">ESTONIA</option>
-              <option value="ET">ETHIOPIA</option>
-              <option value="FJ">FIJI</option>
-              <option value="FI">FINLAND</option>
-              <option value="FR">FRANCE</option>
-              <option value="DE">GERMANY</option>
-              <option value="GR">GREECE</option>
-              <option value="HK">HONG KONG</option>
-              <option value="HU">HUNGARY</option>
-              <option value="IN">INDIA</option>
-              <option value="IT">ITALY</option>
-              <option value="JM">JAMAICA</option>
-              <option value="JP">JAPAN</option>
-              <option value="JO">JORDAN</option>
-              <option value="KZ">KAZAKHSTAN</option>
-              <option value="KE">KENYA</option>
-              <option value="LV">LATVIA</option>
-              <option value="LU">LUXEMBOURG</option>
-              <option value="MV">MALDIVES</option>
-              <option value="MX">MEXICO</option>
-              <option value="MC">MONACO</option>
-              <option value="NL">NETHERLANDS</option>
-              <option value="NZ">NEW ZEALAND</option>
-              <option value="PL">POLAND</option>
-              <option value="PT">PORTUGAL</option>
-              <option value="RO">ROMANIA</option>
-              <option value="RU">RUSSIAN FEDERATION</option>
-              <option value="SK">SLOVAKIA</option>
-              <option value="SI">SLOVENIA</option>
-              <option value="ES">SPAIN</option>
-              <option value="LK">SRI LANKA</option>
-              <option value="SE">SWEDEN</option>
-              <option value="TR">TURKEY</option>
-              <option value="UA">UKRAINE</option>
-              <option value="AE">UNITED ARAB EMIRATES</option>
-              <option value="GB">UNITED KINGDOM</option>
-              <option value="US">UNITED STATES</option>
+              <option value="POLAND">Poland</option>
+              <option value="RUSSIAN">Russia</option>
+              <option value="UKRAINE">Ukraine</option>
             </select>
           </span>
         </fieldset>
         <fieldset>
-          <span>Last name<input type="text" v-model="user.lastname" /></span>
+          <span>Last name<input type="text" v-model="user.lastname" @change="updateUser"/></span>
           <span>mobile phone
             <div class="mobile">
-              <select class="mobile__country">
+              <select class="mobile__country" @change="updateUser" v-model="user.mobile.code">
                 <option disabled selected style='display:none;'> {{user.mobile.code}}</option>
                 <option value="+38">+38</option>
                 <option value="+48">+48</option>
               </select>
-              <input class="mobile__number" type="tel" size="10" v-model="user.mobile.number">
+              <input class="mobile__number" @change="updateUser" type="tel" size="10" v-model="user.mobile.number">
             </div>
           </span>
-          <span>company<input type="text" v-model="user.company"/></span>
+          <span>company<input type="text" v-model="user.company" @change="updateUser"/></span>
         </fieldset>
       </form>
     </div>
-    <div class="account" :class="{hidden:selectedAccount}">
-      <form class="account__form" action="###">
-        <fieldset><span>username<input type="text" v-model="user.username" /></span></fieldset>
-        <fieldset><span>e-mail<input type="text" v-model="user.email" /></span></fieldset>
-      </form><a class="account__link" href="###">
+    <div class="account" v-if="selectedAccount">
+      <form>
+        <fieldset><span>username<input type="text" v-model="user.username" @change="updateUser"/></span></fieldset>
+        <fieldset><span>e-mail<input type="text" v-model="user.email" @change="updateUser"/></span></fieldset>
+      </form><button class="account__link">
         <p>Change password</p><img src="@/assets/personal/part.svg" alt="" />
-      </a>
+      </button>
     </div>
   </section>
 </template>
@@ -134,10 +76,12 @@ export default {
         fourthPath,
         fifthLink: '',
         fifthPath: '',
+        // topFirstPath: 'My profile',
+        // topSecondPath: '',
       },
       user: {},
-      selectedAccount: true,
-      selectedPersonal: false,
+      selectedAccount: false,
+      selectedPersonal: true,
     };
   },
   methods: {
@@ -152,6 +96,7 @@ export default {
     updateUser() {
       this.$store.dispatch('SAVE_USER', this.user);
     },
+
   },
   mounted() {
     this.user = this.$store.state.user;
@@ -173,8 +118,8 @@ export default {
     width: 80%;
 
     @include onPhone {
-      height: 93%;
-      margin: 0 auto;
+      height: 86%;
+      margin: 2% auto;
       width: 100%;
     }
   }
@@ -195,6 +140,13 @@ export default {
       text-transform: uppercase;
       width: 50%;
       outline: none;
+      @include onPhone{
+        font-size: 10px;
+      }
+    }
+
+    @include onTablet{
+      width: 90%;
     }
   }
 
@@ -218,17 +170,39 @@ export default {
       letter-spacing: 0.28px;
       line-height: 14px;
       text-align: center;
+      @include onPhone {
+        font-size: 9px;
+      }
       }
     }
 
     &__photo {
       display: block;
+      width: 135px;
+      height: 160px;
+      @include onTablet {
+        margin: 0 auto;
+      }
+      @include onPhone {
+        height:110px;
+        width: 90px;
+      }
     }
 
     &__image {
       border-radius: 50%;
-      width: 135px;
-      height: 135px;
+      width: 90px;
+      height: 90px;
+    }
+
+    @include onTablet{
+      display: block;
+      width: 50%;
+      margin: 50px auto;
+    }
+    @include onPhone {
+      margin: 10px auto;
+      width: 90%;
     }
   }
 
@@ -242,7 +216,10 @@ export default {
       height: 14px;
       justify-content: space-between;
       margin: 40px auto;
-      width: 145px;
+      width: 155px;
+      background-color: inherit;
+      outline: none;
+      align-items: center;
 
       & p {
         color: #01134e;
@@ -254,6 +231,10 @@ export default {
         line-height: 14px;
         text-transform: uppercase;
       }
+    }
+    @include onTablet{
+      width: 50%;
+      margin: 50px auto;
     }
   }
 
@@ -294,7 +275,23 @@ export default {
       & select {
         height: 42px;
         width: 276px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;       /* remove default arrow */
+        background-image: url(../../assets/personal/Shape.svg);
+        background-repeat: no-repeat;
+        background-position: 250px 17px;
       }
+
+      & select::-ms-expand {
+        display: none; /* hide the default arrow in ie10 and ie11 */
+      }
+    }
+    @include onTablet {
+      display: block;
+    }
+    @include onPhone {
+      width: 80%;
     }
   }
 
@@ -304,9 +301,25 @@ export default {
   }
 
   .location {
-    background: url("../../assets/personal/geo.svg") no-repeat transparent;
-    background-position: 6% 50%;
-    padding-left: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;       /* remove default arrow */
+    background-image: url(../../assets/personal/Shape.svg);
+    background-repeat: no-repeat;
+    background-position: 250px 17px;
+
+    &::before {
+      content: '';
+      background-position: 6% 50%;
+      padding-left: 25px;
+      background-image: url(../../assets/personal/geo.svg);
+      display: block;
+      width: 10px;
+      height: 10px;
+    }
+    & select::-ms-expand {
+      display: none; /* hide the default arrow in ie10 and ie11 */
+    }
   }
 
   .cover {
@@ -325,6 +338,16 @@ export default {
       display: flex;
       justify-content: space-around;
       width: 76px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;       /* remove default arrow */
+      background-image: url(../../assets/personal/Shape.svg);
+      background-repeat: no-repeat;
+      background-position: 55px 17px;
+
+      & select::-ms-expand {
+        display: none; /* hide the default arrow in ie10 and ie11 */
+      }
     }
 
     &__number {

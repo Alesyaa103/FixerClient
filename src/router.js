@@ -9,87 +9,83 @@ import password1 from './auth/views/password1.vue';
 import password2 from './auth/views/password2.vue';
 import password3 from './auth/views/password3.vue';
 import chat from './personal/views/chat.vue';
-import search from './personal/views/search.vue';
+import search from './personal/views/search/search.vue';
 import profile from './personal/views/profile.vue';
-import resultWorkers from './personal/views/resultWorkers.vue';
-import resultMap from './personal/views/resultMap.vue';
 import admin from './personal/views/admin.vue';
 
 const routes = [
   {
     path: '/auth',
     component: auth,
+    beforeEnter: (to, from, next) => {
+      if ((localStorage.getItem('token'))) {
+        next({
+          path: 'personal/profile',
+        });
+      } else {
+        next();
+      }
+    },
     children: [
       {
         path: 'signin',
         component: signIn,
-        meta: { guest: true },
       },
       {
         path: 'signup1',
         component: signUp1,
-        meta: { guest: true },
       },
       {
         path: 'signup2',
         component: signUp2,
-        meta: { guest: true },
       },
       {
         path: 'signup3',
         component: signUp3,
-        meta: { guest: true },
       },
       {
         path: 'password1',
         component: password1,
-        meta: { guest: true },
       },
       {
         path: 'password2',
         component: password2,
-        meta: { guest: true },
       },
       {
         path: 'password3',
         component: password3,
-        meta: { guest: true },
       },
     ],
   },
   {
     path: '/personal',
     component: personal,
+    beforeEnter: (to, from, next) => {
+      if (!(localStorage.getItem('token'))) {
+        next({
+          path: 'auth/signin',
+        });
+      } else {
+        next();
+      }
+    },
     children: [
       {
         path: 'chat',
         component: chat,
-        meta: { auth: true },
       },
       {
         path: 'search',
         component: search,
-        meta: { auth: true },
-        children: [
-          {
-            path: 'resultWorkers',
-            component: resultWorkers,
-          },
-          {
-            path: 'resultMap',
-            copmonent: resultMap,
-          },
-        ],
       },
       {
         path: 'profile',
         component: profile,
-        meta: { auth: true },
       },
       {
         path: 'admin',
         component: admin,
-        meta: { auth: true, admin: true },
+        meta: { admin: true },
       },
     ],
   },
@@ -99,28 +95,5 @@ const router = new VueRouter({
   mode: 'history',
   routes,
 });
-
-// router.beforeEach((to, from, next) => {
-//   if(to.matched.some(record => record.meta.auth)) {
-//     if (localStorage.getItem('token') == null) {
-//       next({
-//         path: 'auth/signin',
-//         params: { nextUrl: to.fullPath }
-//       })
-//     } 
-//   } else if(to.matched.some(record => record.meta.guest)) {
-//     if(localStorage.getItem('token') == null){
-//       next()
-//     }
-//     else{
-//       next({
-//         path: 'personal/profile',
-//         params: { nextUrl: to.fullPath }
-//       })
-//     }
-//   }  else {
-//     next() 
-//   }
-// })
 
 export default router;

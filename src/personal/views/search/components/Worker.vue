@@ -10,11 +10,11 @@
           </div>
           <div class="info__stack">
             <p class="inf">Stack:</p>
-            <p> {{worker.stack}}</p>
+            <p>  {{worker.stack}}</p>
           </div>
           <div class="info__price">
             <p class="inf">Base Daily Rate:</p>
-            <p> $ {{worker.price}} USD</p>
+            <p>  $ {{worker.price}} USD</p>
           </div>
         </div>
       </article>

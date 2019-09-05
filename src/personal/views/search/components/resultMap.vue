@@ -1,6 +1,5 @@
 <template>
-  <div class="results">
-    <span class="map">show results</span>
+  <div>
     <div id='map'></div>
     <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdXWcV_Jb3exf1-wI7FQ8XXemxy8g2RM0"></script>
   </div>
@@ -27,25 +26,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.results {
-    height: 100%;
-    margin: 0 5%;
-}
+
 #map {
     width: 750px;
     height: 470px;
 }
-.map {
-    color: #546087;
-    display: block;
-    font-family: $roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    height: 17px;
-    letter-spacing: 1px;
-    line-height: 14px;
-    margin-bottom: 14px;
-    text-transform: uppercase;
-}
+
 </style>

@@ -34,7 +34,7 @@
 export default {
   name: 'Sidebar',
   props: {
-    returnItems: {},
+    returnItems: Object,
   },
 };
 </script>

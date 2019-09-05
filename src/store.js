@@ -11,13 +11,12 @@ const store = new Vuex.Store({
   mutations: {
     SET_USER: (state, user) => {
       state.user = user;
-      console.log(state.user);
     },
+
   },
   actions: {
     SAVE_USER: async (context, user) => {
-    
-      const { data } = await axios.post('http://localhost:7070/api/updateUser', user );
+      const { data } = await axios.post('http://localhost:7070/api/updateUser', user);
       if (data.status === 200) {
         context.commit('SET_USER', user);
       }
