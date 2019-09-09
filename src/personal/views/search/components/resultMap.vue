@@ -19,7 +19,7 @@ export default {
         zoom: 14,
         center: new google.maps.LatLng(50.45466, 30.5238),
       };
-      const map = new google.maps.Map(element, options);
+      new google.maps.Map(element, options);
     });
   },
 

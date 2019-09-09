@@ -1,7 +1,7 @@
 <template>
 <header class="header">
   <div v-if="headerItems" class="linetop">
-    <div class="burger" @click="showMenu">
+    <div v-if="showThisBurger" class="burger" @click="showMenu">
       <div class="burger__line"></div>
       <div class="burger__line"></div>
       <div class="burger__line"></div>
@@ -13,7 +13,7 @@
     <a class="linetop__words" href="###">{{headerItems.secondLink}}</a>
   </div>
   <div class="profile" @click="showLogout">
-    <p class="linetop__words">{{user.firstname}} {{user.lastname}}</p>
+    <p v-if="user" class="linetop__words">{{user.firstname}} {{user.lastname}}</p>
     <div class="profile__button">
      <img src="@/assets/personal/Shape.svg" alt="">
       <ul v-if="logout">
@@ -28,29 +28,27 @@
 <script>
 export default {
   name: 'HeaderPro',
-  props: ['onShowMenu'],
+  props: {
+    user: Object,
+    onShowMenu: Function,
+    showThisBurger: Boolean,
+  },
   data() {
     return {
-      user: {},
       headerItems: null,
       logout: false,
-      showBar: false,
     };
   },
   methods: {
     showMenu() {
-      this.showBar=!this.showBar;
-      this.onShowMenu(
-        this.showBar,
-      );
+      this.onShowMenu();
     },
     showLogout() {
       this.logout = !this.logout;
     },
     logOut() {
       localStorage.removeItem('token');
-      this.user = {};
-      this.$store.commit('SET_USER', this.user);
+      this.axios.defaults.headers.common = {};
       this.$router.push('/auth/signIn');
     },
     setHeaderItems() {
@@ -92,7 +90,6 @@ export default {
     },
   },
   mounted() {
-    this.user = this.$store.state.user;
     this.setHeaderItems();
   },
 };
@@ -195,7 +192,7 @@ ul{
   &__line{
       background-color: #9f9da8;
       border-radius: 2px;
-      height: 3px; 
+      height: 3px;
       width: 25px;
       margin-bottom: 4px;
   }

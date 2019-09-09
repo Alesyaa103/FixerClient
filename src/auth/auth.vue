@@ -2,7 +2,8 @@
     <div id="app">
         <HeaderAuth/>
         <section class="content">
-            <router-view :onSignIn="onSignIn" :onSignUp1="onSignUp1" :onSignUp2="onSignUp2" :onReset1="onReset1" :onReset2="onReset2" :user="user"> </router-view>
+            <router-view :onSignIn="onSignIn" :onSignUp1="onSignUp1" :onSignUp2="onSignUp2" :onReset1="onReset1" :onReset2="onReset2" :user="user">
+            </router-view>
         </section>
     </div>
 </template>
@@ -25,7 +26,7 @@ export default {
   methods: {
     onReset1(user) {
       this.user = user;
-      this.axios.post('reset1', this.user)
+      this.axios.post('api/check-email', this.user)
         .then((res) => {
           if (res.data.err) {
             const error = res.data.err;
@@ -40,7 +41,7 @@ export default {
     },
     onReset2(password) {
       this.user.password = password;
-      this.axios.post('reset2', this.user)
+      this.axios.post('api/reset-pass', this.user)
         .then((res) => {
           if (res.data.err) {
             const error = res.data.err;
@@ -55,7 +56,7 @@ export default {
     },
     onSignUp2(password) {
       this.user.password = password;
-      this.axios.post('signUp', this.user)
+      this.axios.post('api/sign-up', this.user)
         .then((res) => {
           if (res.data.err) {
             const error = res.data.err;
@@ -74,14 +75,13 @@ export default {
       this.$router.push('/auth/signUp2');
     },
     onSignIn(user) {
-      this.axios.post('signIn', user)
+      this.axios.post('api/sign-in', user)
         .then((res) => {
           if (res.data.err) {
             const error = res.data.err;
             this.showErr(error);
           } else {
             this.saveToken(res);
-            this.saveUser(res);
             this.$router.push('/personal/profile');
           }
         },
@@ -99,15 +99,11 @@ export default {
         timer: 1000,
       });
     },
-    saveUser(res) {
-      if (res.data.user) {
-        const { user } = res.data;
-        this.$store.commit('SET_USER', user);
-      }
-    },
     saveToken(res) {
       if (res.data.token) {
-        localStorage.setItem('token', res.data.token);
+        const { token } = res.data;
+        localStorage.setItem('token', token);
+        this.axios.defaults.headers.common.Authorization = `JWT ${token}`;
       }
     },
   },

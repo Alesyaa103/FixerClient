@@ -1,7 +1,7 @@
 <template>
   <aside class="sidebar">
     <ul>
-      <li class="logo"></li>
+      <li class="logo" @click="showBurger"></li>
       <li class="sidebar__item" >
         <router-link to="search">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,8 +66,31 @@ export default {
   name: 'Sidebar',
   data() {
     return {
-      isAadmin: false,
+      isAdmin: false,
     };
+  },
+  props: {
+    onShowBurger: Function,
+  },
+  methods: {
+    showBurger() {
+      this.onShowBurger();
+    },
+    setAdmin() {
+      if (this.$route.path === '/personal/admin') {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
+    },
+  },
+  watch: {
+    $route() {
+      this.setAdmin();
+    },
+  },
+  mounted() {
+    this.setAdmin();
   },
 };
 </script>

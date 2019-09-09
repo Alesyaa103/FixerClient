@@ -19,10 +19,6 @@ export default {
   background-color: #f9fafc;
   height: 100vh;
   width: 100vw;
-  @include onPhone {
-    min-height: 100vh;
-    height: 100%;
-  }
 }
 
 </style>

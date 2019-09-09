@@ -1,184 +1,68 @@
 <template>
-  <section v-if="user" class="wraper">
+  <section class="workerProfile">
+    <button type="button" class="back" @click.prevent="backToSearch"></button>
     <div class="information">
       <button class="information__button"  :class="{grey:selectedAccount}"  id="personal" @click="chooseScreen"> PERSONAL INFORMATION</button>
       <button class="information__button " :class="{grey:!selectedAccount}" id="account" @click="chooseScreen">ACCOUNT INFORMATION</button>
     </div>
     <div class="content" v-if="!selectedAccount">
+        <!-- <div :style="{'background-image': currentWorkerAvatar}" class="content__image">  -->
       <div class="content__photo">
-        <!-- <div :style="{'background-image': userAvatar}" class="content__image">  -->
-        <img :src="user.photo" class="content__avatar">
-        <label class="content__button" for="file">Change photo</label>
-          <input @click="changePhoto($event)" type="file" id="file" ref=file>
+        <img :src="currentWorker.photo" class="content__avatar">
       </div>
       <form>
         <fieldset>
-          <span>First name
-            <input type="text" @change="updateUser" v-model="user.firstname" :class="{errorInput: $v.user.firstname.$error}" @blur="$v.user.firstname.$touch()"/>
-          </span>
-          <span>title<select @change="updateUser" v-model="user.title">
-              <option disabled selected style='display:none;'> {{user.title}}</option>
-              <option value="Mr">Mr</option>
-              <option value="Mrs">Mrs</option>
-            </select>
-          </span>
+          <span>First name<input type="text" v-model="currentWorker.firstname" readonly/></span>
+          <span>title<input type="text" v-model="currentWorker.title"></span>
           <span>COUNTRY
-            <select class="location" @change="updateUser" v-model="user.location.country">
-              <option disabled selected style='display:none;'>{{this.user.location.country}}</option>
-              <option value="POLAND">Poland</option>
-              <option value="RUSSIAN">Russia</option>
-              <option value="UKRAINE">Ukraine</option>
-            </select>
+            <input class="location" v-model="currentWorker.location.country" readonly>
           </span>
         </fieldset>
         <fieldset>
-          <span>Last name
-            <input type="text" v-model="user.lastname" @change="updateUser" :class="{errorInput: $v.user.lastname.$error}" @blur="$v.user.lastname.$touch()"/>
-          </span>
-          <span>Stack
-            <input type="text" v-model="user.stack" @change="updateUser" :class="{errorInput: $v.user.stack.$error}" @blur="$v.user.stack.$touch()"/>
-          </span>
-          <span>City
-            <select v-model="user.location.city" @change="updateUser" :class="{errorInput: $v.user.location.city.$error}" @blur="$v.user.location.city.$touch()">
-              <option disabled selected style='display:none;'> {{this.user.city}}</option>
-              <option value="Kyiv">Kyiv</option>
-              <option value="Lviv">Lviv</option>
-            </select>
-          </span>
+          <span>Last name<input type="text" v-model="currentWorker.lastname" readonly/></span>
+          <span>Stack<input type="text" v-model="currentWorker.stack" readonly/></span>
+          <span>City<input type="text" v-model="currentWorker.location.city" readonly/></span>
         </fieldset>
       </form>
     </div>
     <div class="account" v-if="selectedAccount">
       <form>
         <fieldset>
-          <span>username
-            <input type="text" v-model="user.username" @change="updateUser" :class="{errorInput: $v.user.username.$error}" @blur="$v.user.username.$touch()"/>
-          </span>
+          <span>username<input type="text" v-model="currentWorker.username" readonly/></span>
           <span>mobile phone
             <div class="mobile">
-              <select class="mobile__country" @change="updateUser" v-model="this.user.mobile.code">
-                <option disabled selected style='display:none;'> {{this.user.mobile.code}}</option>
-                <option value="+38">+38</option>
-                <option value="+48">+48</option>
-              </select>
-              <input class="mobile__number" @change="updateUser" type="tel" size="10" v-model="user.mobile.number">
+              <input class="mobile__country" v-model="currentWorker.mobile.code" readonly>
+              <input class="mobile__number" type="tel" size="10" v-model="currentWorker.mobile.number" readonly>
             </div>
           </span>
           </fieldset>
         <fieldset>
-          <span>e-mail
-            <input type="text" v-model="user.email" @change="updateUser" :class="{errorInput: $v.user.email.$error}" @blur="$v.user.email.$touch()"/>
-          </span>
-          <span>company<input type="text" v-model="user.company" @change="updateUser"/></span>
-          </fieldset>
-      </form><button class="account__link">
-        <p>Change password</p><img src="@/assets/personal/part.svg" alt="" />
-      </button>
+          <span>e-mail<input type="text" v-model="currentWorker.email" readonly/></span>
+          <span>company<input type="text" v-model="currentWorker.company" readonly/></span>
+        </fieldset>
+      </form>
     </div>
   </section>
 </template>
 <script>
-import { required, email } from 'vuelidate/lib/validators';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-
 export default {
   name: 'profile',
+  props: {
+    currentWorker: Object,
+    onBackToSearch: Function,
+  },
   data() {
     return {
-      user: {
-        firstname: '',
-        lastname: '',
-        username: '',
-        title: '',
-        stack: '',
-        email: '',
-        location: {
-          country: '',
-          city: '',
-        },
-        mobile: {
-          code: '',
-          number: '',
-        },
-      },
       selectedAccount: false,
-      userAvatar: '',
     };
-  },
-  validations: {
-    user: {
-      email: {
-        required,
-        email,
-      },
-      firstname: {
-        required,
-      },
-      lastname: {
-        required,
-      },
-      username: {
-        required,
-      },
-      stack: {
-        required,
-      },
-      location: {
-        country: {
-          required,
-        },
-        city: {
-          required,
-        },
-      },
-    },
   },
   methods: {
     chooseScreen() {
       this.selectedAccount = !this.selectedAccount;
     },
-    updateUser() {
-      this.axios.put('api/update-user', this.user);
+    backToSearch() {
+      this.onBackToSearch();
     },
-    changePhoto(event) {
-      const file = event.target.files[0];
-      const formData = new FormData();
-      formData.set('photo', file);
-      this.axios.put('api/photo', formData)
-        .then((res) => {
-          this.user.photo = res.data.photo;
-        }, (err) => {
-          this.showErr(err);
-        });
-    },
-    showErr(error) {
-      Swal.fire({
-        position: 'top',
-        toast: true,
-        type: 'error',
-        title: error,
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    },
-  },
-  mounted() {
-    const token = localStorage.getItem('token');
-    this.axios.defaults.headers.common.Authorization = `JWT ${token}`;
-    this.axios.get('api/')
-      .then((res) => {
-        if (res.data.err) {
-          const error = res.data.err;
-          this.showErr(error);
-        } else {
-          this.user = res.data.user;
-          this.$emit('returnUser', this.user);
-          this.userAvatar = this.user.photo;
-        }
-      }, (err) => {
-        this.showErr(err);
-      });
   },
 };
 
@@ -186,7 +70,7 @@ export default {
 <style lang="scss" scoped>
   @import "@/styles/_mixins.scss";
   @import "@/styles/_reset.scss";
-  .wraper {
+  .workerProfile {
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 30px rgba(153, 163, 174, 0.06);
@@ -194,6 +78,7 @@ export default {
     margin: 2% auto;
     padding: 5% 5%;
     width: 80%;
+    position: relative;
 
     @include onPhone {
       height: 86%;
@@ -239,42 +124,36 @@ export default {
       height: 135px;
       background-repeat: no-repeat;
       border-radius: 50%;
+      @include onTablet {
+        margin: 0 auto;
+      }
       @include onPhone {
         height:90px;
         width: 90px;
+        justify-self: center;
       }
     }
-
+    &__photo{
+      display: flex;
+    }
     &__button {
       display: flex;
       background-color: $fon;
       justify-content: center;
       width: 100%;
+
+      & p {
+      color: #35373b;
       font-family: $roboto;
+      font-size: 12px;
       font-style: normal;
       font-weight: normal;
-      font-size: 12px;
-      line-height: 14px;
       letter-spacing: 0.28px;
-      color: #35373B;
+      line-height: 14px;
+      text-align: center;
       @include onPhone {
         font-size: 9px;
       }
-    }
-
-    &__photo {
-      display: block;
-      width: 135px;
-      height: 160px;
-      & input {
-        display: none;
-      }
-      @include onTablet {
-        margin: 0 auto;
-      }
-      @include onPhone {
-        height:110px;
-        width: 90px;
       }
     }
 
@@ -373,7 +252,7 @@ export default {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;       /* remove default arrow */
-        background-image: url(../../assets/personal/Shape.svg);
+        background-image: url(../../../../assets/personal/Shape.svg);
         background-repeat: no-repeat;
         background-position: 250px 17px;
         @include onPhone{
@@ -405,15 +284,16 @@ export default {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;       /* remove default arrow */
-    background-image: url(../../assets/personal/Shape.svg);
+    background-image: url(../../../../assets/personal/geo.svg);
     background-repeat: no-repeat;
-    background-position: 250px 17px;
+    padding-left: 22px;
+    background-position: 8px 10px;
 
     &::before {
       content: '';
       background-position: 6% 50%;
       padding-left: 25px;
-      background-image: url(../../assets/personal/geo.svg);
+      background-image: url(../../../../assets/personal/geo.svg);
       display: block;
       width: 10px;
       height: 10px;
@@ -421,11 +301,6 @@ export default {
     & select::-ms-expand {
       display: none; /* hide the default arrow in ie10 and ie11 */
     }
-  }
-
-  .cover {
-    display: flex;
-    margin: 3% 0;
   }
 
   .mobile {
@@ -442,7 +317,7 @@ export default {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;       /* remove default arrow */
-      background-image: url(../../assets/personal/Shape.svg);
+      background-image: url(../../../../assets/personal/Shape.svg);
       background-repeat: no-repeat;
       background-position: 55px 17px;
 
@@ -467,5 +342,18 @@ export default {
     border-bottom: 2px solid #ccd0dc;
     color: #ccd0dc;
   }
-
+  .back{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-image: url("../../../../assets/personal/backArrow.svg");
+    background-repeat: no-repeat;
+    outline: none;
+    background-color: inherit;
+    @include onPhone{
+      top: 50px;
+    }
+  }
 </style>

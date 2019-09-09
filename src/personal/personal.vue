@@ -1,14 +1,13 @@
 <template>
     <div id="app">
-        <Sidebar v-if="showBar"/>
+        <Sidebar v-if="showBar" :onShowBurger="onChangeMenu"/>
         <section class="container">
-            <HeaderPro :onShowMenu="onShowMenu"/>
-            <router-view></router-view>
+            <HeaderPro :user="user" :onShowMenu="onChangeMenu" :showThisBurger="showThisBurger"/>
+            <router-view @returnUser="onReturnUser"></router-view>
         </section>
     </div>
 </template>
 <script>
-import axios from 'axios';
 import HeaderPro from './components/HeaderPro.vue';
 import Sidebar from './components/Sidebar.vue';
 
@@ -21,11 +20,17 @@ export default {
   data() {
     return {
       showBar: true,
+      user: {},
+      showThisBurger: false,
     };
   },
   methods: {
-    onShowMenu(showBar) {
-      this.showBar=showBar;
+    onReturnUser(data) {
+      this.user = data;
+    },
+    onChangeMenu() {
+      this.showThisBurger = !this.showThisBurger;
+      this.showBar = !this.showBar;
     },
   },
 };
@@ -37,6 +42,12 @@ export default {
     overflow: hidden;
     @include onTablet {
       overflow: auto;
+      min-height: 100vh;
+      height: 100%;
+    }
+    @include onPhone {
+      min-height: 100vh;
+      height: 100%;
     }
 }
 .container {

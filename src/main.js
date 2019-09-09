@@ -5,14 +5,13 @@ import VueAxios from 'vue-axios';
 import Vuelidate from 'vuelidate';
 import App from './App.vue';
 import router from './router';
-import store from './store';
 
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
 
 Vue.config.productionTip = false;
 const instance = axios.create({
-  baseURL: 'http://localhost:7070/api/',
+  baseURL: 'http://52.28.24.7/',
   timeout: 1000,
 
 });
@@ -21,6 +20,5 @@ Vue.use(VueAxios, instance);
 
 new Vue({
   router,
-  store,
   render: h => h(App),
 }).$mount('#app');
