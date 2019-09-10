@@ -15,20 +15,15 @@
             <label for="check1">I agree to the myFixer.com</label>
             <a href="##">Privacy Policy</a>
         </div>
-        <!-- <vue-recaptcha sitekey="6LfdXrcUAAAAADHn388Fz11p8IrvOM8jhF6aQCgs" loadRecaptchaScript="true"  ref="recaptcha" id="captcha" @expired="onRecaptchaExpired" @verify="onRecaptchaVerified">
-        </vue-recaptcha> -->
-        <!-- <img src="@/assets/auth/recaptcha.svg" alt=""> -->
-        <div class="g-recaptcha" data-sitekey="6LfdXrcUAAAAAJCwvwnEUNGIKa1hF9v3nuDdHa8-" data-callback="verifyCaptcha"></div>
+        <img src="@/assets/auth/recaptcha.svg" alt="">
         <div class="send__button">
             <button type="submit" @click.prevent="signUp2"> Done!</button>
         </div>
     </form>
-    <script type="application/javascript" src='https://www.google.com/recaptcha/api.js'></script>
 </div>
 </template>
 <script>
 import { required, minLength, sameAs } from 'vuelidate/lib/validators';
-import VueRecaptcha from 'vue-recaptcha';
 import ConfirmPassword from '../components/ConfirmPassword.vue';
 
 export default {
@@ -36,7 +31,6 @@ export default {
   props: ['onSignUp2'],
   components: {
     ConfirmPassword,
-    VueRecaptcha,
   },
   data() {
     return {
@@ -44,7 +38,6 @@ export default {
       checked1: false,
       checked2: false,
       passwordConfirm: '',
-      recaptcha: '',
     };
   },
   validations: {
@@ -61,7 +54,7 @@ export default {
     signUp2() {
       this.submitted = true;
       this.$v.$touch();
-      if (this.$v.$invalid || grecaptcha.getResponse().length == 0) {
+      if (this.$v.$invalid) {
         return;
       }
       if (this.checked1 && this.checked2) {
@@ -69,13 +62,6 @@ export default {
           this.password,
         );
       }
-    },
-    onRecaptchaExpired() {
-      this.$refs.recaptcha.reset();
-    },
-    onRecaptchaVerified(token) {
-      this.recaptcha = token;
-      console.log('Recaptcha token', token);
     },
   },
 };

@@ -8,7 +8,6 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import HeaderAuth from './components/HeaderAuth.vue';
 
@@ -77,17 +76,19 @@ export default {
     onSignIn(user) {
       this.axios.post('api/sign-in', user)
         .then((res) => {
-          if (res.data.err) {
-            const error = res.data.err;
-            this.showErr(error);
-          } else {
+          // if (res.data.err) {
+          //   const error = res.data.err;
+          //   this.showErr(error);
+          // } else {
             this.saveToken(res);
             this.$router.push('/personal/profile');
-          }
+          //}
         },
         (err) => {
+          //console.log(err);
           this.showErr(err);
-        });
+        }
+        );
     },
     showErr(error) {
       Swal.fire({

@@ -26,10 +26,11 @@
 </header>
 </template>
 <script>
+import Swal from 'sweetalert2';
+
 export default {
   name: 'HeaderPro',
   props: {
-    user: Object,
     onShowMenu: Function,
     showThisBurger: Boolean,
   },
@@ -37,6 +38,7 @@ export default {
     return {
       headerItems: null,
       logout: false,
+      user: {},
     };
   },
   methods: {
@@ -83,6 +85,16 @@ export default {
         }
       }
     },
+    showErr(error) {
+      Swal.fire({
+        position: 'top',
+        toast: true,
+        type: 'error',
+        title: error,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    },
   },
   watch: {
     $route() {
@@ -91,6 +103,20 @@ export default {
   },
   mounted() {
     this.setHeaderItems();
+    const token = localStorage.getItem('token');
+    this.axios.defaults.headers.common.Authorization = `JWT ${token}`;
+    this.axios.get('api/')
+      .then((res) => {
+        if (res.data.err) {
+          const error = res.data.err;
+          this.showErr(error);
+        } else {
+          this.user = res.data.user;
+          this.$emit('returnUser', this.user);
+        }
+      }, (err) => {
+        this.showErr(err.err);
+      });
   },
 };
 </script>

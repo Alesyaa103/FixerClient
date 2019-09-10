@@ -6,7 +6,6 @@
       <button class="information__button " :class="{grey:!selectedAccount}" id="account" @click="chooseScreen">ACCOUNT INFORMATION</button>
     </div>
     <div class="content" v-if="!selectedAccount">
-        <!-- <div :style="{'background-image': currentWorkerAvatar}" class="content__image">  -->
       <div class="content__photo">
         <img :src="currentWorker.photo" class="content__avatar">
       </div>

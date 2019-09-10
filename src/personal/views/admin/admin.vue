@@ -1,6 +1,6 @@
 <template>
 <section class="wraper contain">
-  <input type="text" placeholder="Type here to search" />
+  <input type="text" placeholder="Type here to search" v-model="search"/>
   <ul class="admin">
     <li class="admin__green">
       <span>firstname</span>
@@ -10,12 +10,13 @@
       <span>level</span>
       <span>e-mail</span>
     </li>
-  <Worker :worker="worker" v-for='worker in workers' :key="worker._id"/>
+  <Worker :worker="worker" v-for='worker in filteredWorkers' :key="worker._id"/>
   </ul>
 </section>
 </template>
 <script>
 import Worker from './components/Worker.vue';
+import Swal from 'sweetalert2';
 
 export default {
   name: 'admin',
@@ -25,6 +26,7 @@ export default {
   data() {
     return {
       workers: [],
+      search: '',
     }
   },
   mounted() {
@@ -36,9 +38,30 @@ export default {
         this.workers = res.data.workers;
         }
       }, (err) => {
-        this.showErr(err);
+        this.showErr(err.err);
       });
   },
+  methods: {
+    showErr(error) {
+      Swal.fire({
+        position: 'top',
+        toast: true,
+        type: 'error',
+        title: err,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    },
+  },
+  computed: {
+    filteredWorkers() {
+      let filterWorkers = this.workers;
+      if (this.search !== '') {
+        filterWorkers = filterWorkers.filter(el => (el.firstname.toLowerCase().includes(this.search.toLowerCase()) || (el.lastname.toLowerCase().includes(this.search.toLowerCase()))));
+      }
+      return filterWorkers;
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

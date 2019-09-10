@@ -2,8 +2,8 @@
     <div id="app">
         <Sidebar v-if="showBar" :onShowBurger="onChangeMenu" :user="user"/>
         <section class="container">
-            <HeaderPro :user="user" :onShowMenu="onChangeMenu" :showThisBurger="showThisBurger"/>
-            <router-view @returnUser="onReturnUser"></router-view>
+            <HeaderPro :onShowMenu="onChangeMenu" :showThisBurger="showThisBurger" @returnUser="onReturnUser"/>
+            <router-view ></router-view>
         </section>
     </div>
 </template>

@@ -1,13 +1,13 @@
 <template>
-<div>
-<section class="wraper" v-if="!isWorker">
-    <div class="cover">
+<section class="wraper">
+    <div class="cover"  v-if="!isWorker">
         <form class="search" action="##">
             <span>location<select v-model="selected.country">
                     <option disabled selected style='display:none;'> </option>
                     <option>All</option>
                     <option>Poland</option>
                     <option>Ukraine</option>
+                    <option>Russian</option>
                 </select></span>
             <span>Search
               <input type="search" placeholder="type your querty" v-model="selected.fullname">
@@ -49,9 +49,8 @@
           <resultMap v-if="showMap"/>
         </div>
     </div>
+    <WorkerProfile v-if="isWorker" :currentWorker="currentWorker" :onBackToSearch="onBackToSearch"/>
 </section>
-<WorkerProfile v-if="isWorker" :currentWorker="currentWorker" :onBackToSearch="onBackToSearch"/>
-</div>
 </template>
 <script>
 import Swal from 'sweetalert2';
@@ -114,7 +113,7 @@ export default {
             this.workers = res.data.workers;
           }
         }, (err) => {
-          this.showErr(err);
+          this.showErr(err.err);
         });
     },
     onShowWorkerProfile(data) {
@@ -154,11 +153,6 @@ export default {
       width: 100%;
     }
   }
-
-  // .location {
-  //   background: url("../../assets/personal/geo.svg") no-repeat transparent;
-  //   background-position: 6% 50%;
-  // }
 
   .cover {
     display: flex;

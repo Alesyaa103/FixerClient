@@ -2,12 +2,11 @@
   <li v-if="worker">
     <span>{{worker.firstname}}</span>
     <span>{{worker.lastname}}</span>
-    <span>{{worker.location.country}}</span>
+    <span v-if="worker.location">{{worker.location.country}}</span>
     <span>Requested</span>
     <span>{{worker.rating}}</span>
     <span class="email">{{worker.email}}</span>
     <button @click="deleteUser" type="button"></button>
-    <img src="@/assets/personal/cross.svg" alt="" />
   </li>
 </template>
 <script>
@@ -21,9 +20,9 @@ export default {
   },
   methods: {
     deleteUser() {
-      this.axios.delete(`api/remove:${this.worker._id}`)
+      this.axios.delete(`api/remove${this.worker._id}`)
       .then((res) => {
-        this.showErr(res);
+        this.showStatus(res);
         }, (err) => {
           this.showErr(err);
         });
@@ -33,10 +32,21 @@ export default {
         position: 'top',
         toast: true,
         type: 'error',
-        title: error,
+        title: err,
         showConfirmButton: false,
         timer: 1000,
       });
+    },
+    showStatus(error) {
+      Swal.fire({
+        position: 'top',
+        toast: true,
+        type: 'success',
+        title: err,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    
     },
   },
 }
@@ -62,11 +72,14 @@ li{
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  & img{
+  button{
     width: 9px;
     height: 9px;
     margin-top: 2%;
     margin-right: 2%;
+    background-image: url('../../../../assets/personal/cross.svg');
+    background-repeat: no-repeat;
+    background-color: inherit;
   }
   .email{
     text-align: left;

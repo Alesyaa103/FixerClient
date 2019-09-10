@@ -6,10 +6,11 @@
     </div>
     <div class="content" v-if="!selectedAccount">
       <div class="content__photo">
-        <!-- <div :style="{'background-image': userAvatar}" class="content__image">  -->
         <img :src="user.photo" class="content__avatar">
+        <!-- <form id="uploadForm" role="form" enctype=multipart/form-data> -->
         <label class="content__button" for="file" href="#">Change photo</label>
-          <input @click="changePhoto($event)" type="file" id="file" ref=file multiple>
+          <input @change="changePhoto($event)" type="file" id="file" ref=file >
+        <!-- </form> -->
       </div>
       <form>
         <fieldset>
@@ -25,9 +26,9 @@
           <span>COUNTRY
             <select class="location" @change="updateUser" v-model="user.location.country">
               <option disabled selected style='display:none;'>{{this.user.location.country}}</option>
-              <option value="POLAND">Poland</option>
-              <option value="RUSSIAN">Russia</option>
-              <option value="UKRAINE">Ukraine</option>
+              <option value="Poland">Poland</option>
+              <option value="Russian">Russia</option>
+              <option value="Ukraine">Ukraine</option>
             </select>
           </span>
         </fieldset>
@@ -43,6 +44,8 @@
               <option disabled selected style='display:none;'> {{this.user.city}}</option>
               <option value="Kyiv">Kyiv</option>
               <option value="Lviv">Lviv</option>
+              <option value="Varshava">Varshava</option>
+              <option value="Moskow">Moskow</option>
             </select>
           </span>
         </fieldset>
@@ -56,12 +59,12 @@
           </span>
           <span>mobile phone
             <div class="mobile">
-              <select class="mobile__country" @change="updateUser" v-model="this.user.mobile.code">
+              <select class="mobile__country" @change="updateUser" v-model="user.mobile.code" >
                 <option disabled selected style='display:none;'> {{this.user.mobile.code}}</option>
                 <option value="+38">+38</option>
                 <option value="+48">+48</option>
               </select>
-              <input class="mobile__number" @change="updateUser" type="tel" size="10" v-model="user.mobile.number">
+              <input class="mobile__number" @change="updateUser" type="tel" size="10" v-model="user.mobile.number" :class="{errorInput: $v.user.mobile.number.$error}" @blur="$v.user.email.mobile.number.$touch()">
             </div>
           </span>
           </fieldset>
@@ -78,8 +81,7 @@
   </section>
 </template>
 <script>
-import { required, email } from 'vuelidate/lib/validators';
-import axios from 'axios';
+import { required, email, minLength} from 'vuelidate/lib/validators';
 import Swal from 'sweetalert2';
 
 export default {
@@ -104,7 +106,6 @@ export default {
         photo: '',
       },
       selectedAccount: false,
-      userAvatar: '',
     };
   },
   validations: {
@@ -133,6 +134,11 @@ export default {
           required,
         },
       },
+      mobile: {
+        number: {
+          minLength: minLength(10),
+        }
+      }
     },
   },
   methods: {
@@ -142,17 +148,16 @@ export default {
     updateUser() {
       this.axios.put('api/update-user', this.user);
     },
-    changePhoto(event) {
+    changePhoto() {
       const file = event.target.files[0];
       console.log(file);
-      const formData = new FormData();
-      formData.set('photo', file);
-      console.log(file);
-      this.axios.put('api/photo', formData)
+      const photo = new FormData();
+      photo.set('photo', file);
+      this.axios.put('api/photo', photo)
         .then((res) => {
           this.user.photo = res.data.photo;
         }, (err) => {
-          this.showErr(err);
+          this.showErr(err.err);
         });
     },
     showErr(error) {
@@ -176,11 +181,9 @@ export default {
           this.showErr(error);
         } else {
           this.user = res.data.user;
-          this.$emit('returnUser', this.user);
-          this.userAvatar = this.user.photo;
         }
       }, (err) => {
-        this.showErr(err);
+        this.showErr(err.err);
       });
   },
 };
