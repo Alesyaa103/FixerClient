@@ -13,7 +13,7 @@
               <p class="category">Stack:</p>
               <p class="content">  {{worker.stack}}</p>
             </div>
-            <button to="/personal/search/worker" @click.prevent="showWorkerProfile">More</button>
+            <button to="/personal/search/worker" @click="showWorkerProfile">More</button>
           </div>
           <div class="info__content">
             <div class="info__content--group">
@@ -74,6 +74,7 @@ export default {
       height: 76px;
       width: 76px;
       border-radius: 50%;
+      object-fit: cover;
     }
     @include onTablet {
       margin: 10px auto;

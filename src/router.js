@@ -11,7 +11,7 @@ import password3 from './auth/views/password3.vue';
 import chat from './personal/views/chat.vue';
 import search from './personal/views/search/search.vue';
 import profile from './personal/views/profile.vue';
-import admin from './personal/views/admin.vue';
+import admin from './personal/views/admin/admin.vue';
 
 const routes = [
   {

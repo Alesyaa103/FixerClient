@@ -8,8 +8,8 @@
       <div class="content__photo">
         <!-- <div :style="{'background-image': userAvatar}" class="content__image">  -->
         <img :src="user.photo" class="content__avatar">
-        <label class="content__button" for="file">Change photo</label>
-          <input @click="changePhoto($event)" type="file" id="file" ref=file>
+        <label class="content__button" for="file" href="#">Change photo</label>
+          <input @click="changePhoto($event)" type="file" id="file" ref=file multiple>
       </div>
       <form>
         <fieldset>
@@ -101,6 +101,7 @@ export default {
           code: '',
           number: '',
         },
+        photo: '',
       },
       selectedAccount: false,
       userAvatar: '',
@@ -143,8 +144,10 @@ export default {
     },
     changePhoto(event) {
       const file = event.target.files[0];
+      console.log(file);
       const formData = new FormData();
       formData.set('photo', file);
+      console.log(file);
       this.axios.put('api/photo', formData)
         .then((res) => {
           this.user.photo = res.data.photo;
@@ -239,6 +242,7 @@ export default {
       height: 135px;
       background-repeat: no-repeat;
       border-radius: 50%;
+      object-fit: cover;
       @include onPhone {
         height:90px;
         width: 90px;
