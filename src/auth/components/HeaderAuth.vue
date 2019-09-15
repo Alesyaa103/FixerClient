@@ -19,7 +19,7 @@ export default {
     setHeaderItems() {
       switch (this.$route.path) {
         case ('/auth/signin'):
-        case ('/auth/password3'):{
+        case ('/auth/password3'): {
           this.headerItems = {
             headerText: 'Do not have an account?',
             headerPath: 'signup1',

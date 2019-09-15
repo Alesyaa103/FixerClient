@@ -4,7 +4,7 @@
                     <legend class="send__name">Sign In</legend>
                     <input type="email" placeholder="E-mail" required name="email"  v-model="user.email" :class="{errorInput: $v.user.email.$error}" @change="$v.user.email.$touch()">
                     <input type="password" placeholder="Password" required name="password" v-model="user.password" :class="{errorInput: $v.user.password.$error}" @change="$v.user.password.$touch()">
-                    <router-link to="/password1" class="send__link">Forgot password?</router-link>
+                    <router-link to="/auth/password1" class="send__link">Forgot password?</router-link>
                     <div class="send__button">
                         <button type="submit" @click.prevent="signIn"> Sign In</button>
                     </div>

@@ -88,7 +88,7 @@ export default {
         filterWorkers = filterWorkers.filter(el => (el.firstname.toLowerCase().includes(this.selected.fullname.toLowerCase()) || (el.lastname.toLowerCase().includes(this.selected.fullname.toLowerCase()))));
       }
       if ((this.selected.category !== '') && (this.selected.category !== 'All')) {
-        filterWorkers = filterWorkers.filter(el => el.email.includes(this.selected.category));
+        filterWorkers = filterWorkers.filter(el => el.stack.includes(this.selected.category));
       }
       if ((this.selected.country !== '') && (this.selected.country !== 'All')) {
         filterWorkers = filterWorkers.filter(el => el.location.country === this.selected.country);

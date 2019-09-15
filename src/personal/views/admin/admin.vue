@@ -15,8 +15,8 @@
 </section>
 </template>
 <script>
-import Worker from './components/Worker.vue';
 import Swal from 'sweetalert2';
+import Worker from './components/Worker.vue';
 
 export default {
   name: 'admin',
@@ -27,7 +27,7 @@ export default {
     return {
       workers: [],
       search: '',
-    }
+    };
   },
   mounted() {
     const token = localStorage.getItem('token');
@@ -35,7 +35,7 @@ export default {
     this.axios.get('api/workers?param=by rating')
       .then((res) => {
         if (res.data.workers) {
-        this.workers = res.data.workers;
+          this.workers = res.data.workers;
         }
       }, (err) => {
         this.showErr(err.err);
@@ -47,7 +47,7 @@ export default {
         position: 'top',
         toast: true,
         type: 'error',
-        title: err,
+        title: error,
         showConfirmButton: false,
         timer: 1000,
       });
@@ -60,8 +60,8 @@ export default {
         filterWorkers = filterWorkers.filter(el => (el.firstname.toLowerCase().includes(this.search.toLowerCase()) || (el.lastname.toLowerCase().includes(this.search.toLowerCase()))));
       }
       return filterWorkers;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

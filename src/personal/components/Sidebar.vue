@@ -92,7 +92,7 @@ export default {
             bgSearch: 0.5,
             bgChat: 1,
             bgAdmin: 0.5,
-          }
+          };
           break;
         }
         case ('/personal/search'): {
@@ -101,7 +101,7 @@ export default {
             bgProfile: 0.5,
             bgChat: 0.5,
             bgAdmin: 0.5,
-          }
+          };
           break;
         }
         case ('/personal/admin'): {
@@ -110,7 +110,7 @@ export default {
             bgSearch: 0.5,
             bgChat: 0.5,
             bgAdmin: 1,
-          }
+          };
           break;
         }
         default: {
@@ -123,16 +123,16 @@ export default {
           break;
         }
       }
-    }
+    },
   },
   watch: {
     $route() {
-      //this.setAdmin();
+      // this.setAdmin();
       this.colorAttr();
     },
   },
   mounted() {
-    //this.setAdmin();
+    // this.setAdmin();
     this.colorAttr();
   },
 };

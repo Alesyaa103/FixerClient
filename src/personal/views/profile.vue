@@ -7,10 +7,8 @@
     <div class="content" v-if="!selectedAccount">
       <div class="content__photo">
         <img :src="user.photo" class="content__avatar">
-        <!-- <form id="uploadForm" role="form" enctype=multipart/form-data> -->
         <label class="content__button" for="file" href="#">Change photo</label>
           <input @change="changePhoto($event)" type="file" id="file" ref=file >
-        <!-- </form> -->
       </div>
       <form>
         <fieldset>
@@ -36,7 +34,7 @@
           <span>Last name
             <input type="text" v-model="user.lastname" @change="updateUser" :class="{errorInput: $v.user.lastname.$error}" @blur="$v.user.lastname.$touch()"/>
           </span>
-          <span>Stack
+          <span>Category
             <input type="text" v-model="user.stack" @change="updateUser" :class="{errorInput: $v.user.stack.$error}" @blur="$v.user.stack.$touch()"/>
           </span>
           <span>City
@@ -64,7 +62,7 @@
                 <option value="+38">+38</option>
                 <option value="+48">+48</option>
               </select>
-              <input class="mobile__number" @change="updateUser" type="tel" size="10" v-model="user.mobile.number" :class="{errorInput: $v.user.mobile.number.$error}" @blur="$v.user.email.mobile.number.$touch()">
+              <input class="mobile__number" @change="updateUser" type="tel" size="10" v-model="user.mobile.number" :class="{errorInput: $v.user.mobile.number.$error}" @blur="$v.user.mobile.number.$touch()">
             </div>
           </span>
           </fieldset>
@@ -81,7 +79,7 @@
   </section>
 </template>
 <script>
-import { required, email, minLength} from 'vuelidate/lib/validators';
+import { required, email, minLength } from 'vuelidate/lib/validators';
 import Swal from 'sweetalert2';
 
 export default {
@@ -137,8 +135,8 @@ export default {
       mobile: {
         number: {
           minLength: minLength(10),
-        }
-      }
+        },
+      },
     },
   },
   methods: {
@@ -148,9 +146,8 @@ export default {
     updateUser() {
       this.axios.put('api/update-user', this.user);
     },
-    changePhoto() {
+    changePhoto(event) {
       const file = event.target.files[0];
-      console.log(file);
       const photo = new FormData();
       photo.set('photo', file);
       this.axios.put('api/photo', photo)
@@ -379,7 +376,7 @@ export default {
         width: 276px;
         -webkit-appearance: none;
         -moz-appearance: none;
-        appearance: none;       /* remove default arrow */
+        appearance: none;
         background-image: url(../../assets/personal/Shape.svg);
         background-repeat: no-repeat;
         background-position: 250px 17px;
@@ -389,7 +386,7 @@ export default {
       }
 
       & select::-ms-expand {
-        display: none; /* hide the default arrow in ie10 and ie11 */
+        display: none;
       }
     }
     @include onTablet {
@@ -411,7 +408,7 @@ export default {
   .location {
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;       /* remove default arrow */
+    appearance: none;
     background-image: url(../../assets/personal/Shape.svg);
     background-repeat: no-repeat;
     background-position: 250px 17px;
@@ -426,7 +423,7 @@ export default {
       height: 10px;
     }
     & select::-ms-expand {
-      display: none; /* hide the default arrow in ie10 and ie11 */
+      display: none;
     }
   }
 
@@ -474,5 +471,4 @@ export default {
     border-bottom: 2px solid #ccd0dc;
     color: #ccd0dc;
   }
-
 </style>

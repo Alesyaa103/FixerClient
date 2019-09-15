@@ -21,8 +21,8 @@ export default {
   methods: {
     deleteUser() {
       this.axios.delete(`api/remove${this.worker._id}`)
-      .then((res) => {
-        this.showStatus(res);
+        .then((res) => {
+          this.showStatus(res);
         }, (err) => {
           this.showErr(err);
         });
@@ -32,24 +32,23 @@ export default {
         position: 'top',
         toast: true,
         type: 'error',
-        title: err,
+        title: error,
         showConfirmButton: false,
         timer: 1000,
       });
     },
-    showStatus(error) {
+    showStatus(res) {
       Swal.fire({
         position: 'top',
         toast: true,
         type: 'success',
-        title: err,
+        title: res,
         showConfirmButton: false,
         timer: 1000,
       });
-    
     },
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 li{
